@@ -36,22 +36,31 @@ jobs:
           ls -la www
       - name: Create Android project
         run: npx cap add android
-      - name: App icon
+      - name: App icon and launch screen
         continue-on-error: true
         run: |
           pip install pillow
           python3 - <<'PY'
           import glob,os
-          from PIL import Image
+          from PIL import Image,ImageDraw
           src=Image.open("icon-512.png").convert("RGBA")
           for f in glob.glob("android/app/src/main/res/mipmap-*/ic_launcher*.png"):
               n=os.path.basename(f)
               sz=Image.open(f).size[0]
-              im=src.resize((sz,sz))
               if "foreground" in n:
-                  c=Image.new("RGBA",(sz,sz),(15,118,110,255)); k=int(sz*0.62)
-                  c.paste(src.resize((k,k)),((sz-k)//2,(sz-k)//2)); im=c
+                  im=Image.new("RGBA",(sz,sz),(255,255,255,255)); k=int(sz*0.70)
+                  im.paste(src.resize((k,k)),((sz-k)//2,(sz-k)//2))
+              else:
+                  im=src.resize((sz,sz)).convert("RGBA")
+                  if "round" in n:
+                      m=Image.new("L",(sz,sz),0); ImageDraw.Draw(m).ellipse((0,0,sz-1,sz-1),fill=255)
+                      im.putalpha(m)
               im.save(f)
+          for f in glob.glob("android/app/src/main/res/drawable*/splash*.png"):
+              w,h=Image.open(f).size
+              bg=Image.new("RGBA",(w,h),(255,255,255,255)); k=int(min(w,h)*0.5)
+              bg.paste(src.resize((k,k)),((w-k)//2,(h-k)//2))
+              bg.save(f)
           PY
       - name: Build
         run: |
