@@ -6,7 +6,7 @@ export const cfg={
   appId:"1:691203822442:web:dc57e69671219bb0854b13"
 };
 // অ্যাডমিনদের ইমেইল (আইডি@fund.app, ছোট হাতের অক্ষরে)। Firebase Rules-এও একই তালিকা থাকতে হবে
-export const admins=["mamun@fund.app","shorif@fund.app"];
+export const admins=["mamun@fund.app"];
 
 // Google Sheet ব্যাকআপের Web App লিংক (শেষে /exec)। না বসালে Sheet ব্যাকআপ বন্ধ থাকে
-export const sheetUrl="";
+export const sheetUrl="https://script.google.com/macros/s/AKfycby2ipLHsqrM3oXPIWTUVhBDBsaTJ3QoDvXCKzCs19eyOVzmE85YG4fiXjwRQaz1qwDF1w/exec";
