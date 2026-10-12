@@ -19,7 +19,7 @@ button.pri{background:var(--p);color:#fff;border:0;font-weight:600}button.sm{wid
 nav{position:fixed;bottom:0;left:0;right:0;background:var(--c);border-top:1px solid var(--b);display:flex;overflow-x:auto;z-index:5}
 nav button{flex:1;min-width:76px;border:0;border-radius:0;margin:0;background:none;font-size:12px;padding:10px 4px}nav button.on{color:var(--p);font-weight:700;border-top:3px solid var(--p)}
 body{overscroll-behavior-y:contain;-webkit-tap-highlight-color:transparent}button:active{opacity:.7}.off{background:#b45309;color:#fff;text-align:center;font-size:12px;padding:4px}
-#toast{position:fixed;bottom:84px;left:50%;transform:translateX(-50%);background:#111d;color:#fff;padding:8px 18px;border-radius:20px;opacity:0;transition:.3s;pointer-events:none;z-index:9;font-size:14px}.tw{font-size:11px;padding:1px 7px;border-radius:8px;background:#fde68a;color:#78350f;display:inline-block;margin:1px 0}.ban{background:#7c3aed;color:#fff;padding:8px 12px;font-size:13px}.ban select,.ban button{width:auto;display:inline-block;padding:4px 8px;margin:2px;font-size:12px}.lg{height:30px;width:30px;border-radius:8px;background:#fff;object-fit:contain;vertical-align:middle;margin-right:6px}.tga{background:#bbf7d0!important;color:#14532d!important}.tgr{background:#fecaca!important;color:#7f1d1d!important}.tg{font-size:11px;padding:0 6px;border-radius:8px;background:var(--b)}.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#toast{position:fixed;bottom:84px;left:50%;transform:translateX(-50%);background:#111d;color:#fff;padding:8px 18px;border-radius:20px;opacity:0;transition:.3s;pointer-events:none;z-index:9;font-size:14px}.tw{font-size:11px;padding:1px 7px;border-radius:8px;background:#fde68a;color:#78350f;display:inline-block;margin:1px 0}.ban{background:#7c3aed;color:#fff;padding:8px 12px;font-size:13px}.ban select,.ban button{width:auto;display:inline-block;padding:4px 8px;margin:2px;font-size:12px}.lg{height:30px;width:30px;border-radius:8px;background:#fff;object-fit:contain;vertical-align:middle;margin-right:6px}.ovl{position:fixed;top:0;left:0;right:0;bottom:0;background:#000b;z-index:30;overflow:auto;padding:12px}.ovl .card{max-width:760px;margin:20px auto}.tga{background:#bbf7d0!important;color:#14532d!important}.tgr{background:#fecaca!important;color:#7f1d1d!important}.tg{font-size:11px;padding:0 6px;border-radius:8px;background:var(--b)}.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .lb{display:block;font-size:12px;color:var(--m);margin:10px 0 0}.row{display:flex;gap:8px}.row select{flex:1}button.dng{background:#b91c1c;color:#fff;border:0}.login{max-width:340px;margin:12vh auto;text-align:center}.msg{color:var(--r);font-size:13px}.tag{font-size:11px;padding:1px 7px;border-radius:9px;background:var(--b)}
 </style></head><body><script>(function(){var shown=0;function show(m){if(shown||window.__ok)return;shown=1;var a=document.getElementById("app");if(a)a.innerHTML='<div style="padding:20px;font:14px system-ui"><b>⚠️ অ্যাপ চালু হয়নি</b><p style="color:#b91c1c;word-break:break-all">'+m+'</p><p>ইন্টারনেট চেক করুন, তারপর অ্যাপ বন্ধ করে আবার খুলুন। না হলে এই লাল লেখাটির ছবি তুলে পাঠান।</p></div>'}
 addEventListener("error",function(e){var t=e.target;if(t&&t.tagName=="SCRIPT")show("ফাইল লোড হয়নি: "+(t.src||"module"));else if(e.message)show(e.message)},true);
@@ -75,39 +75,99 @@ function stat(m){const L=ledger(m),pays=S.tx.filter(t=>t.kind=="pay"&&t.memberId
 function summary(){
   const pays=S.tx.filter(t=>t.kind=="pay"),pay=sum(pays,"amount"),exs=S.common.filter(c=>c.kind=="extra"),ex=sum(exs,"amount"),exO=sum(exs.filter(c=>c.src=="outsider"),"amount"),out=sum(S.common.filter(c=>c.kind=="expense"),"amount");
   return{balance:pay+ex-out,totalIn:pay+ex,totalOut:out,monthly:pay,extra:ex,extraO:exO,extraM:ex-exO,members:S.members.length,thisMonth:sum(pays.filter(p=>p.ym==nowYM),"amount"),due:S.members.reduce((a,m)=>a+Math.max(0,-stat(m).net),0)}}
-let lastSum="";setInterval(()=>{if(!S.admin||!S.ready||!S.members.length)return;const o=summary(),s=JSON.stringify(o);if(s!=lastSum){lastSum=s;setDoc(doc(db,"summary","group"),{...o,updated:Date.now()}).catch(()=>{})}syncSheet()},3000);
+let lastSum="";setInterval(()=>{if(!S.admin||!S.ready||!S.members.length)return;const o=summary(),s=JSON.stringify(o);if(s!=lastSum){lastSum=s;setDoc(doc(db,"summary","group"),{...o,updated:Date.now()}).catch(()=>{})}syTick()},3000);
 
-// ---------- Google Sheet আয়না (ব্যাকআপ) ----------
-const TL={pay:"মাসিক জমা",adv:"অগ্রিম জমা",due:"দেয় চাঁদা",baki:"বকেয়া",waiver:"ব্যক্তিগত মওকুফ",gwaiver:"গ্রুপ মওকুফ",extra:"অতিরিক্ত জমা",expense:"খরচ"};
-function SHEETS(){const o=summary(),T={},byD=(a,b)=>(b.date||"")>(a.date||"")?1:-1,nm=id=>nameOf(id);
-  T["সারাংশ"]={header:true,rows:[["বিষয়","টাকা / সংখ্যা"],["তহবিল ব্যালেন্স",o.balance],["মোট জমা (সর্বমোট)",o.totalIn],["মোট মাসিক চাঁদা (সর্বমোট)",o.monthly],["সদস্যদের অতিরিক্ত জমা",o.extraM],["বাইরের মানুষের অতিরিক্ত জমা",o.extraO],["মোট অতিরিক্ত তহবিল (সর্বমোট)",o.extra],["মোট খরচ (সর্বমোট)",o.totalOut],["এই মাসের মোট জমা",o.thisMonth],["মোট বকেয়া (সব সদস্য)",o.due],["সদস্য সংখ্যা",o.members]]};
-  T["সদস্য"]={header:true,text:[1,4],rows:[["নাম","মোবাইল","যোগদান মাস","বর্তমান মাসিক হার","লগইন আইডি","মোট জমা","এখন পর্যন্ত দেয়","নেট ব্যালেন্স (+অগ্রিম/−বকেয়া)","অবস্থা","অগ্রিম জমা (ভবিষ্যৎ মাস)"],...S.members.map(m=>{const t=stat(m);return[m.name,m.phone||"",lab(m.join),rateAt(m,nowYM),m.loginId||"",t.pool,t.dueNow,t.net,t.label,t.adv]})]};
-  T["জমা"]={header:true,rows:[["তারিখ","সদস্য","কোন মাসের চাঁদা","ধরন","টাকা","মাধ্যম","মন্তব্য"],...S.tx.filter(x=>x.kind=="pay").sort(byD).map(x=>[x.date||"",nm(x.memberId),lab(x.ym),x.ym>nowYM?"অগ্রিম":"মাসিক",x.amount,x.method||"",x.note||""])]};
-  T["অতিরিক্ত জমা"]={header:true,rows:[["তারিখ","উৎস","নাম","উদ্দেশ্য","টাকা"],...S.common.filter(c=>c.kind=="extra").sort(byD).map(c=>[c.date||"",c.src=="member"?"গ্রুপ সদস্য":"বাইরের",c.name||"",c.title||"",c.amount])]};
-  T["খরচ"]={header:true,rows:[["তারিখ","কে খরচ করেছেন","উদ্দেশ্য","টাকা"],...S.common.filter(c=>c.kind=="expense").sort(byD).map(c=>[c.date||"",c.name||"",c.title||"",c.amount])]};
-  T["মওকুফ"]={header:true,rows:[["ধরন","সদস্য","মাস","টাকা"],...S.tx.filter(x=>x.kind=="waiver").map(x=>["ব্যক্তিগত",nm(x.memberId),lab(x.ym),x.amount]),...S.common.filter(c=>c.kind=="gwaiver").map(c=>["গ্রুপ (সবার)","সব সদস্য",lab(c.ym),""])]};
-  T["মাসওয়ারি"]={header:true,rows:[["সদস্য","মাস","মাসিক হার","মওকুফ","দেয় চাঁদা","জমা","ব্যালেন্স (+অগ্রিম/−বকেয়া)"],...S.members.flatMap(m=>ledger(m).rows.map(r=>[m.name,lab(r.ym),rateAt(m,r.ym),r.gw?"গ্রুপের মাস মওকুফ":r.w>0?"ব্যক্তিগত মওকুফ "+r.w:"",r.due,r.paid,r.bal]))]};
-  T["খতিয়ান"]={header:true,rows:[["হিসাবের মাস","তারিখ","সদস্য","ধরন","বিবরণ","জমা (+)","দেয় / বকেয়া / খরচ (−)"],...rows().sort(byD).map(r=>[r.ym?lab(r.ym):"",["pay","adv","extra","expense"].includes(r.k)?r.date:"",r.who?nm(r.who):(r.nm||"গ্রুপ"),TL[r.k]||r.k,r.txt,r.cr||r.wv||"",r.dr||""])]};
-  return T}
-let shHash="",shBusy=0,shLast=0;
-const setSh=m=>{S.shMsg=m;const e=$("#shst");if(e)e.textContent=m};
-async function syncSheet(force){
-  if(!SHEET||!S.admin||!S.ready||!S.members.length||shBusy)return;
-  const tables=SHEETS(),js=JSON.stringify({members:S.members,tx:S.tx,common:S.common}),h=JSON.stringify(tables)+js;
-  if(!force&&(h==shHash||Date.now()-shLast<8000))return;
-  shBusy=1;shLast=Date.now();setSh("⏳ Google Sheet-এ পাঠানো হচ্ছে…");
-  try{const tok=await auth.currentUser.getIdToken(),r=await fetch(SHEET,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({token:tok,tables,json:js})}),j=await r.json();
-    if(j.ok){shHash=h;setSh("✓ Google Sheet আপডেট হয়েছে: "+new Date().toLocaleTimeString("bn-BD"))}else{shLast=Date.now()+60000;setSh("✗ "+j.error)}}
-  catch(e){shLast=Date.now()+60000;setSh("✗ পাঠানো যায়নি ("+(navigator.onLine?e.message:"ইন্টারনেট নেই")+")")}
-  shBusy=0}
-const sheetCard=()=>`<div class="card"><h3>📊 Google Sheet ব্যাকআপ</h3>${SHEET?`<p class="k" id="shst">${S.shMsg||"চালু আছে — ডেটা বদলালে নিজে থেকেই আপডেট হয়"}</p><button data-act="sheetnow">🔄 এখনই আপডেট করুন</button>`:'<p class="k">এখনও চালু হয়নি। config.js-এ sheetUrl বসাতে হবে।</p>'}</div>`;
+// ---------- Google Sheet দ্বিমুখী সিঙ্ক (আপনার মূল ফাইলের ইনপুট ঘরের সাথে) ----------
+const N_=s=>String(s??"").normalize("NFC").trim().replace(/\s+/g," "),ph_=p=>{let d=String(p??"").replace(/\D/g,"");if(d.length==10&&d[0]=="1")d="0"+d;return d};
+const KEYLEN={members:1,pays:3,waivers:2,gw:1,extras:4,expenses:3},TN={members:"সদস্য",pays:"জমা",waivers:"ব্যক্তিগত মওকুফ",gw:"গ্রুপ মওকুফ",extras:"অতিরিক্ত জমা",expenses:"খরচ"};
+const srt=a=>a.sort((x,y)=>{const p=JSON.stringify(x),q=JSON.stringify(y);return p<q?-1:p>q?1:0});
+const hsh=o=>{const s=JSON.stringify(o);let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return h+":"+s.length};
+const parseCh=s=>s?s.split("|").map(x=>{const[f,r]=x.split(":");return{from:f,rate:+r}}):[];
+function canonApp(){
+  const it={members:[],pays:[],waivers:[],gw:[],extras:[],expenses:[]},nm=id=>N_(nameOf(id)),add=(t,row,doc,col)=>it[t].push({row,doc,col});
+  S.members.forEach(m=>add("members",[N_(m.name),ph_(m.phone),m.join,+m.rate0,(m.changes||[]).slice().sort((a,b)=>a.from<b.from?-1:1).map(c=>c.from+":"+(+c.rate)).join("|")],m,"members"));
+  S.tx.forEach(x=>{if(x.kind=="pay")add("pays",[nm(x.memberId),x.ym,+x.amount,x.date||x.ym+"-01",N_(x.method),N_(x.note)],x,"tx");else if(x.kind=="waiver")add("waivers",[nm(x.memberId),x.ym,+x.amount],x,"tx")});
+  S.common.forEach(c=>{if(c.kind=="gwaiver")add("gw",[c.ym,N_(c.title)],c,"common");
+    else if(c.kind=="extra")add("extras",[c.date||"",c.src=="member"?"member":"outsider",N_(c.name),+c.amount,N_(c.title)],c,"common");
+    else if(c.kind=="expense")add("expenses",[c.date||"",N_(c.name),+c.amount,N_(c.title)],c,"common")});
+  return it}
+const rowsOf=it=>{const o={};for(const t in it)o[t]=srt(it[t].map(x=>x.row));return o};
+function diffT(t,appItems,sheetRows){const k=KEYLEN[t],ks=r=>JSON.stringify(r.slice(0,k)),R={add:[],del:[],upd:[]},A={},X={};
+  appItems.forEach(i=>(A[ks(i.row)]=A[ks(i.row)]||[]).push(i));sheetRows.forEach(r=>(X[ks(r)]=X[ks(r)]||[]).push(r));
+  new Set([...Object.keys(A),...Object.keys(X)]).forEach(key=>{const a=(A[key]||[]).slice(),s=(X[key]||[]).slice();
+    for(let i=s.length-1;i>=0;i--){const j=a.findIndex(x=>JSON.stringify(x.row)==JSON.stringify(s[i]));if(j>=0){a.splice(j,1);s.splice(i,1)}}
+    const n=Math.min(a.length,s.length);for(let i=0;i<n;i++)R.upd.push({it:a[i],to:s[i]});
+    a.slice(n).forEach(i=>R.del.push(i));s.slice(n).forEach(r=>R.add.push(r))});
+  return R}
+function diffAll(it,sheet){const d={},cnt={add:0,del:0,upd:0},parts=[];
+  for(const t in KEYLEN){d[t]=diffT(t,it[t],sheet[t]||[]);const x=d[t];cnt.add+=x.add.length;cnt.del+=x.del.length;cnt.upd+=x.upd.length;
+    if(x.add.length+x.del.length+x.upd.length)parts.push(`${TN[t]}: +${x.add.length} −${x.del.length} ~${x.upd.length}`)}
+  return{d,cnt,txt:parts.join(" • ")}}
+async function applyPull(sheet){
+  const it=canonApp(),{d}=diffAll(it,sheet),ops=[],warn=[],nameId={};S.members.forEach(m=>nameId[N_(m.name)]=m.id);
+  const set=(c,o)=>ops.push(["set",c,JSON.parse(JSON.stringify(o))]),del=(c,id)=>ops.push(["del",c,id]);
+  d.members.add.forEach(r=>{const id=uid();nameId[r[0]]=id;set("members",{id,name:r[0],phone:r[1],join:r[2],rate0:r[3],changes:parseCh(r[4])})});
+  d.members.upd.forEach(({it:i,to})=>set("members",{...i.doc,phone:to[1],join:to[2],rate0:to[3],changes:parseCh(to[4])}));
+  d.members.del.forEach(({doc:m})=>{S.tx.filter(x=>x.memberId==m.id).forEach(x=>del("tx",x.id));if(m.uid)del("users",m.uid);del("members",m.id);delete nameId[N_(m.name)]});
+  d.pays.add.forEach(r=>{const mid=nameId[r[0]];if(!mid){warn.push(r[0]);return}set("tx",{id:uid(),kind:"pay",memberId:mid,ym:r[1],amount:r[2],date:r[3],method:r[4],note:r[5]})});
+  d.pays.upd.forEach(({it:i,to})=>set("tx",{...i.doc,date:to[3],method:to[4],note:to[5]}));
+  d.waivers.add.forEach(r=>{const mid=nameId[r[0]];if(!mid){warn.push(r[0]);return}set("tx",{id:uid(),kind:"waiver",memberId:mid,ym:r[1],amount:r[2]})});
+  d.waivers.upd.forEach(({it:i,to})=>set("tx",{...i.doc,amount:to[2]}));
+  d.gw.add.forEach(r=>set("common",{id:uid(),kind:"gwaiver",ym:r[0],title:r[1]}));
+  d.gw.upd.forEach(({it:i,to})=>set("common",{...i.doc,title:to[1]}));
+  d.extras.add.forEach(r=>set("common",{id:uid(),kind:"extra",date:r[0],src:r[1],name:r[2],amount:r[3],title:r[4],...(r[1]=="member"&&nameId[r[2]]?{memberId:nameId[r[2]]}:{})}));
+  d.extras.upd.forEach(({it:i,to})=>set("common",{...i.doc,title:to[4]}));
+  d.expenses.add.forEach(r=>set("common",{id:uid(),kind:"expense",date:r[0],name:r[1],amount:r[2],title:r[3],...(nameId[r[1]]?{memberId:nameId[r[1]]}:{})}));
+  d.expenses.upd.forEach(({it:i,to})=>set("common",{...i.doc,title:to[3]}));
+  ["pays","waivers","gw","extras","expenses"].forEach(t=>d[t].del.forEach(({doc:x,col})=>del(col,x.id)));
+  for(let i=0;i<ops.length;i+=400){const b=writeBatch(db);ops.slice(i,i+400).forEach(([k,c,o])=>k=="set"?b.set(doc(db,c,o.id),o):b.delete(doc(db,c,o)));await b.commit()}
+  return{n:ops.length,warn}}
+let syBusy=0,syLast=0,syHA="",syChg=0;
+const setSh=m=>{S.shMsg=m;const e=$("#shst");if(e)e.textContent=m},autoPull=()=>localStorage.autoPull!="0";
+async function callSheet(body){const tok=await auth.currentUser.getIdToken(),r=await fetch(SHEET,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({token:tok,...body})}),j=await r.json();if(!j.ok)throw new Error(j.error||"অজানা সমস্যা");return j}
+async function doPush(A,hA){const j=await callSheet({action:"write",tables:A,json:JSON.stringify({members:S.members,tx:S.tx,common:S.common})});
+  await callSheet({action:"state",state:{app:hA,sheet:hsh(j.sheet)}});S.sy=null;
+  setSh("✓ অ্যাপ → Sheet হয়েছে: "+new Date().toLocaleTimeString("bn-BD")+(j.changedRows?` (${j.changedRows} সারি বদলেছে)`:" (বদল ছিল না)")+(j.warn&&j.warn.length?" ⚠️ "+j.warn.join("; "):""))}
+async function applyPending(askDel){const y=S.sy;if(!y)return;
+  if(y.cnt.del>0&&askDel&&!confirm(`Sheet-এর সাথে মেলাতে অ্যাপ থেকে ${y.cnt.del}টি এন্ট্রি মুছবে (বদলও এর মধ্যে ধরা)।\n${y.txt}\nনিশ্চিত?`))return;
+  setSh("⏳ Sheet থেকে অ্যাপে নেওয়া হচ্ছে…");const r=await applyPull(y.sheet);
+  await new Promise(x=>setTimeout(x,1800));
+  await callSheet({action:"state",state:{app:hsh(rowsOf(canonApp())),sheet:y.hS}});S.sy=null;
+  setSh("✓ Sheet → অ্যাপ হয়েছে: "+new Date().toLocaleTimeString("bn-BD")+` (${r.n} পরিবর্তন)`+(r.warn.length?" ⚠️ নাম মেলেনি, বাদ গেছে: "+[...new Set(r.warn)].join(", "):""))}
+async function syncCycle(force){
+  if(!SHEET||!S.admin||!S.ready||!S.members.length||syBusy)return;
+  syBusy=1;syLast=Date.now();
+  try{
+    setSh("⏳ Sheet-এর সাথে মেলানো হচ্ছে…");
+    const r=await callSheet({action:"read"}),it=canonApp(),A=rowsOf(it),hA=hsh(A),hS=hsh(r.sheet),st=r.state,df=diffAll(it,r.sheet);
+    if(force=="push"||(!force&&st&&hA!=st.app&&hS==st.sheet)){await doPush(A,hA)}
+    else if(force=="pull"){S.sy={mode:"pull",sheet:r.sheet,cnt:df.cnt,txt:df.txt,hS};await applyPending(true)}
+    else if(!st&&hA==hS){await callSheet({action:"state",state:{app:hA,sheet:hS}});setSh("✓ অ্যাপ ও Sheet এক — "+new Date().toLocaleTimeString("bn-BD"))}
+    else if(!st){S.sy={mode:"first",sheet:r.sheet,cnt:df.cnt,txt:df.txt,hS};setSh("প্রথমবার মেলানো — আপনার সিদ্ধান্ত দরকার")}
+    else if(hA==st.app&&hS==st.sheet){S.sy=null;setSh("✓ সব মিলে আছে — "+new Date().toLocaleTimeString("bn-BD"))}
+    else if(hA==st.app){S.sy={mode:"pull",sheet:r.sheet,cnt:df.cnt,txt:df.txt,hS};
+      if(autoPull()&&df.cnt.del==0)await applyPending(false);else setSh("📥 Sheet-এ বদল পাওয়া গেছে")}
+    else{S.sy={mode:"conflict",sheet:r.sheet,cnt:df.cnt,txt:df.txt,hS};setSh("⚠️ দুই দিকেই বদল — সিদ্ধান্ত দরকার")}
+  }catch(e){syLast=Date.now()+30000;setSh("✗ "+(navigator.onLine?e.message:"ইন্টারনেট নেই"))}
+  syBusy=0;render()}
+function syTick(){if(!SHEET||!S.admin||!S.ready||!S.members.length)return;const h=hsh(rowsOf(canonApp())),now=Date.now();
+  if(h!=syHA){syHA=h;syChg=now}
+  if(syBusy||now-syLast<8000)return;
+  if(syChg&&now-syChg>6000){syChg=0;syncCycle()}else if(now-syLast>60000)syncCycle()}
+const syncBanner=()=>{const y=S.sy;if(!y||!S.admin)return"";const b=(act,l,c)=>`<button class="${c||""}" data-act="${act}">${l}</button>`,
+  head={pull:"📥 Google Sheet-এ বদল পাওয়া গেছে",conflict:"⚠️ অ্যাপ ও Sheet — দুই জায়গাতেই বদল হয়েছে",first:"🔗 প্রথমবার অ্যাপ ও Sheet মেলানো"}[y.mode];
+  return`<div class="card" style="border-color:#d97706"><h3>${head}</h3><p class="k">অ্যাপকে Sheet-এর মতো করতে হলে: যোগ ${y.cnt.add}, মুছবে ${y.cnt.del}, বদল ${y.cnt.upd}<br>${y.txt||""}</p>
+  ${b("sypull","⬇️ Sheet-এর ডেটা অ্যাপে নিন"+(y.mode=="first"?" (সাধারণত এটাই ঠিক)":""),"pri")}${y.mode!="pull"?b("sypush","⬆️ অ্যাপের ডেটা Sheet-এ বসান"):""}${b("syskip","পরে দেখব")}</div>`};
+const sheetCard=()=>`<div class="card"><h3>📊 Google Sheet সিঙ্ক</h3>${SHEET?`<p class="k" id="shst">${S.shMsg||"চালু আছে — অ্যাপে বদল হলে Sheet-এ, Sheet-এ বদল হলে অ্যাপে নেওয়ার প্রস্তাব আসে"}</p>
+  <button data-act="sheetnow">🔄 এখনই মিলিয়ে নিন</button><button data-act="forcepush">⬆️ অ্যাপ → Sheet (জোর করে)</button><button data-act="forcepull">⬇️ Sheet → অ্যাপ (জোর করে)</button>
+  <button data-act="autopull">স্বয়ংক্রিয় গ্রহণ (মুছা ছাড়া বদল): ${autoPull()?"✅ চালু":"⛔ বন্ধ"}</button>`:'<p class="k">এখনও চালু হয়নি। config.js-এ sheetUrl বসাতে হবে।</p>'}</div>`;
 function dl(name,text,type){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;document.body.appendChild(a);a.click();a.remove()}
 async function mkLogin(m,id,pw){const sec=initializeApp(cfg,"sec"+Date.now()),sa=getAuth(sec);
   try{const c=await createUserWithEmailAndPassword(sa,email(id),pw);if(m.uid)deleteDoc(doc(db,"users",m.uid));
     await setDoc(doc(db,"users",c.user.uid),{memberId:m.id,loginId:id});await setDoc(doc(db,"members",m.id),{...m,loginId:id,uid:c.user.uid});await signOut(sa)}finally{deleteApp(sec)}}
 async function importData(d){const it=[];(d.members||[]).forEach(m=>{const o={...m};delete o.pw;delete o.loginId;delete o.uid;it.push(["members",o])});(d.tx||[]).forEach(x=>it.push(["tx",x]));(d.common||[]).forEach(x=>it.push(["common",x]));
   for(let i=0;i<it.length;i+=400){const b=writeBatch(db);it.slice(i,i+400).forEach(([c,o])=>b.set(doc(db,c,o.id),o));await b.commit()}toast("ইমপোর্ট সম্পন্ন ("+it.length+" টি)")}
-window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();S.inst=e;render()});setInterval(()=>{const y=ymOf(new Date());if(y!=nowYM){nowYM=y;today=dayOf(new Date());render()}},60000);window.addEventListener("online",render);window.addEventListener("offline",render);
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();S.inst=e;render()});setInterval(()=>{const y=ymOf(new Date());if(y!=nowYM){nowYM=y;today=dayOf(new Date());render()}},60000);document.addEventListener("visibilitychange",()=>{if(!document.hidden)syLast=0});window.addEventListener("online",render);window.addEventListener("offline",render);
 // ---------- views ----------
 const nameOf=id=>(S.members.find(m=>m.id==id)||{}).name||"?";
 const commonList=()=>{const l=S.common.filter(c=>c.kind!="gwaiver").sort((a,b)=>(b.date||"")>(a.date||"")?1:-1).slice(0,40);
@@ -191,7 +251,7 @@ function render(){
   if(!S.user){A.innerHTML=`<div class="login card"><img src="icon-512.png" alt="গ্রুপ তহবিল" style="width:200px;max-width:70%;background:#fff;padding:6px;border-radius:16px"><p class="k">আইডি ও পাসওয়ার্ড দিয়ে ঢুকুন</p><input id="li" placeholder="আইডি" autocapitalize="none" value="${q(localStorage.lastId||"")}"><input id="lp" type="password" placeholder="পাসওয়ার্ড"><button class="pri" data-act="login">লগইন</button><div class="msg">${S.err}</div>${S.inst?'<hr><button data-act="install">📲 অ্যাপ ইনস্টল করুন</button>':""}</div>`;return}
   const asU=S.admin&&S.asMember&&S.members.length;
   const tabs=asU?[["home","🏠","হোম"],["stmt","📒","খতিয়ান"],["hist","📅","মাসওয়ারি"],["grp","🧾","অতিরিক্ত/খরচ"]]:S.admin?[["home","📊","সারাংশ"],["led","📒","খতিয়ান"],["pay","➕","জমা"],["com","🧾","খরচ/অতিরিক্ত"],["wv","🎁","মওকুফ"],["mem","👥","সদস্য"],["tool","⚙️","টুলস"]]:[["home","🏠","হোম"],["stmt","📒","খতিয়ান"],["hist","📅","মাসওয়ারি"],["grp","🧾","অতিরিক্ত/খরচ"],["me","⚙️","সেটিং"]];
-  const body=!S.ready?'<p style="text-align:center;padding:40px">⏳ ডেটা লোড হচ্ছে…</p>':asU?withUser(memberView):S.admin?adminView():memberView();
+  const body=!S.ready?'<p style="text-align:center;padding:40px">⏳ ডেটা লোড হচ্ছে…</p>':asU?withUser(memberView):S.admin?syncBanner()+adminView():memberView();
   const ban=asU?`<div class="ban">👁️ সদস্য হিসেবে দেখছেন: <select data-asm="1">${S.members.map(m=>`<option value="${m.id}"${m.id==S.asMember?" selected":""}>${m.name}</option>`).join("")}</select> <button data-act="backadmin">↩ অ্যাডমিন প্যানেল</button></div>`:"";
   A.innerHTML=`<header><b><img src="icon-192.png" class="lg" alt="">গ্রুপ তহবিল ${S.admin?"(অ্যাডমিন)":""}</b>${S.admin&&!asU&&S.members.length?'<button data-act="asuser">👤 সদস্য ভিউ</button>':""}${S.inst?'<button data-act="install">📲 ইনস্টল</button>':""}</header>${ban}${navigator.onLine?"":'<div class="off">📴 অফলাইন — সর্বশেষ সংরক্ষিত ডেটা দেখানো হচ্ছে</div>'}<main>${S.err?`<p class="msg">${S.err}</p>`:""}${body}</main><nav>${tabs.map(t=>`<button class="${S.tab==t[0]?"on":""}" data-tab="${t[0]}">${t[1]}<br>${t[2]}</button>`).join("")}</nav>`}
 
@@ -203,7 +263,9 @@ const A={
   async install(){if(S.inst){S.inst.prompt();S.inst=null;render()}},
   asuser(){const k=localStorage.adminMember;S.asMember=S.members.some(m=>m.id==k)?k:S.members[0].id;S.tab="home";render()},
   backadmin(){S.asMember=null;S.tab="home";render()},
-  sheetnow(){syncSheet(true)},
+  sheetnow(){syncCycle()},forcepush(){if(confirm("Sheet-এর ইনপুট ঘর অ্যাপের ডেটা দিয়ে মেলানো হবে (Sheet-এর আলাদা বদল মুছে যেতে পারে)। চালাবেন?"))syncCycle("push")},forcepull(){syncCycle("pull")},
+  autopull(){localStorage.autoPull=autoPull()?"0":"1";render()},sypull(){applyPending(true).catch(e=>setSh("✗ "+e.message)).then(()=>render())},
+  sypush(){if(confirm("Sheet-এর ইনপুট ঘর অ্যাপের ডেটা দিয়ে মেলানো হবে। Sheet-এ আলাদা করে যা বদলানো হয়েছে তা হারাবে। নিশ্চিত?"))syncCycle("push")},syskip(){S.sy=null;syLast=Date.now()+600000;render()},
   freset(){S.fl={m:"",y:nowYM.slice(0,4),mo:"",t:"",q:""};render()},
   restore(){$("#fi").click()},
   cancel(){S.ep=S.ec=S.emem=S.ew=S.eg=S.cd=null;render()},
