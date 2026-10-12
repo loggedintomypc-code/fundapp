@@ -9,4 +9,4 @@ export const cfg={
 export const admins=["mamun@fund.app"];
 
 // Google Sheet ব্যাকআপের Web App লিংক (শেষে /exec)। না বসালে Sheet ব্যাকআপ বন্ধ থাকে
-export const sheetUrl="https://script.google.com/macros/s/AKfycby2ipLHsqrM3oXPIWTUVhBDBsaTJ3QoDvXCKzCs19eyOVzmE85YG4fiXjwRQaz1qwDF1w/exec";
+export const sheetUrl="https://script.google.com/macros/s/AKfycbzuRxaaB66uhHwIP3ZMQ6U6B9DM-i2ih_prTrgyCMGTo8gPOWs7U6wu7iZTAPj4jfdu/exec";
