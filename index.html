@@ -50,6 +50,15 @@ function ledger(m){
     bal+=paid-due;rows.push({ym:y,due,paid,bal,w,gw:gw.has(y)})}
   return{rows,bal}}
 
+// বকেয়া: প্রতিটি মাসের নিজের জমা দিয়ে হিসাব। শুধু বাড়তি টাকা (অতিরিক্ত/অগ্রিম/শুরুর আগের জমা) পুরনো ঘাটতিতে মেলে।
+function arrears(m){
+  const L=ledger(m),pays=S.tx.filter(t=>t.kind=="pay"&&t.memberId==m.id),pool=sum(pays,"amount"),out={};
+  let covered=0;const short=[];
+  L.rows.forEach(r=>{if(r.ym>nowYM)return;const c=Math.min(r.paid,r.due);covered+=c;if(r.due-c>0)short.push({ym:r.ym,due:r.due,amt:r.due-c})});
+  let spare=Math.max(0,pool-covered);
+  short.forEach(x=>{const a=Math.min(spare,x.amt);spare-=a;if(x.amt-a>0)out[x.ym]=x.amt-a});
+  return out}
+
 // ---------- online data (Firebase) ----------
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7),clean=s=>(s||"").trim().toLowerCase().replace(/[^a-z0-9_.-]/g,""),email=i=>i+"@fund.app";
 const toast=m=>{const t=$("#toast");t.textContent=m;t.style.opacity=1;setTimeout(()=>t.style.opacity=0,1800)};
@@ -171,7 +180,7 @@ window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();S.inst=e;re
 const nameOf=id=>(S.members.find(m=>m.id==id)||{}).name||"?";
 const commonList=()=>{const all=S.common.filter(c=>c.kind!="gwaiver").sort((a,b)=>(b.date||"")>(a.date||"")?1:-1),ex=all.filter(c=>c.kind=="extra"),dn=(a)=>new Set(a.map(c=>(c.src=="outsider"?"o|":"m|")+(c.name||"নাম নেই"))).size,em=ex.filter(c=>c.src!="outsider"),eo=ex.filter(c=>c.src=="outsider"),xp=all.filter(c=>c.kind=="expense");
   return`<div class="card"><h3>অতিরিক্ত জমা ও খরচ</h3><p class="k">গ্রুপ সদস্য ${f(dn(em))} জন: ৳${f(sum(em,"amount"))} • বাইরের ${f(dn(eo))} জন: ৳${f(sum(eo,"amount"))} • মোট জমা ৳${f(sum(ex,"amount"))} • খরচ ৳${f(sum(xp,"amount"))}</p><div class="tbl"><table><tr><th>তারিখ</th><th>ধরন</th><th>কে / কার কাছ থেকে</th><th>উদ্দেশ্য / কারণ</th><th>টাকা</th>${S.admin?"<th>ব্যবস্থা</th>":""}</tr>${all.map(c=>`<tr><td>${c.date||""}</td><td>${c.kind=="expense"?"খরচ":c.src=="outsider"?"অতিরিক্ত জমা (বাইরের)":"অতিরিক্ত জমা (সদস্য)"}</td><td>${c.name||"—"}</td><td>${c.title||""}</td><td class="${c.kind=="expense"?"neg":"pos"}">${f(c.amount)}</td>${S.admin?`<td><button class="sm" data-ec="${c.id}">✏️</button> <button class="sm" data-del="common/${c.id}">✕</button></td>`:""}</tr>`).join("")||"<tr><td>কিছু নেই</td></tr>"}</table></div></div>`};
-const ledTable=m=>{const L=ledger(m),bk={};{let pool=sum(S.tx.filter(t=>t.kind=="pay"&&t.memberId==m.id),"amount");L.rows.forEach(r=>{if(r.ym>nowYM)return;const c=Math.min(pool,r.due);pool-=c;if(r.due-c>0)bk[r.ym]=r.due-c})}return`<div class="card"><h3>${m.name} — মাসওয়ারি হিসাব</h3><div class="tbl"><table><tr><th>মাস</th><th>মাসিক হার</th><th>মওকুফ</th><th>দেয় চাঁদা<br>(দিতে হবে)</th><th>জমা<br>(দিয়েছেন)</th><th>ব্যালেন্স<br>(+অগ্রিম / −বকেয়া)</th></tr>${[...L.rows].reverse().map(r=>`<tr><td>${lab(r.ym)}${r.ym>nowYM&&r.paid>0?' <span class="tg">অগ্রিম</span>':""}${bk[r.ym]?' <span class="tg tgr">বকেয়া</span>':""}</td><td>${f(rateAt(m,r.ym))}</td><td>${r.gw?'<span class="tw">গ্রুপের মাস মওকুফ</span>':""}${r.w>0?`<span class="tw">ব্যক্তিগত মওকুফ ৳${f(r.w)}</span>`:""}</td><td>${f(r.due)}</td><td>${f(r.paid)}</td><td class="${r.bal<0?"neg":"pos"}">${f(r.bal)}</td></tr>`).join("")}</table></div><p class="k">মওকুফ থাকলে ঐ মাসের দেয় চাঁদা কমে যায় (গ্রুপের মাস মওকুফ হলে শূন্য)।</p></div>`};
+const ledTable=m=>{const L=ledger(m),bk=arrears(m);return`<div class="card"><h3>${m.name} — মাসওয়ারি হিসাব</h3><div class="tbl"><table><tr><th>মাস</th><th>মাসিক হার</th><th>মওকুফ</th><th>দেয় চাঁদা<br>(দিতে হবে)</th><th>জমা<br>(দিয়েছেন)</th><th>ব্যালেন্স<br>(+অগ্রিম / −বকেয়া)</th></tr>${[...L.rows].reverse().map(r=>`<tr><td>${lab(r.ym)}${r.ym>nowYM&&r.paid>0?' <span class="tg">অগ্রিম</span>':""}${bk[r.ym]?' <span class="tg tgr">বকেয়া'+(bk[r.ym]<r.due?" ৳"+f(bk[r.ym]):"")+'</span>':""}</td><td>${f(rateAt(m,r.ym))}</td><td>${r.gw?'<span class="tw">গ্রুপের মাস মওকুফ</span>':""}${r.w>0?`<span class="tw">ব্যক্তিগত মওকুফ ৳${f(r.w)}</span>`:""}</td><td>${f(r.due)}</td><td>${f(r.paid)}</td><td class="${r.bal<0?"neg":"pos"}">${f(r.bal)}</td></tr>`).join("")}</table></div><p class="k">মওকুফ থাকলে ঐ মাসের দেয় চাঁদা কমে যায় (গ্রুপের মাস মওকুফ হলে শূন্য)।</p></div>`};
 const q=x=>String(x??"").replace(/"/g,"&quot;"),F=(l,h)=>`<label class="lb">${l}</label>${h}`;
 const SEL=(id,o,cur)=>`<select id="${id}">${o.map(x=>{const[a,b]=Array.isArray(x)?x:[x,x];return`<option value="${q(a)}"${a==cur?" selected":""}>${b}</option>`}).join("")}</select>`;
 const MP=(id,val)=>{const[y,m]=(val||nowYM).split("-"),ys=[];for(let i=2020;i<=+nowYM.slice(0,4)+3;i++)ys.push(i);
@@ -196,8 +205,8 @@ function rows(){const R=[];
   S.common.forEach(c=>{const d=c.date||c.ym||"";if(c.kind=="gwaiver")R.push({id:c.id,col:"common",k:"gwaiver",date:c.ym+"-01",ym:c.ym,who:null,cr:0,dr:0,txt:"[গ্রুপ] সবার চাঁদা মওকুফ — "+lab(c.ym),note:c.title||""});
     else{if(!S.admin&&c.memberId!=(S.members[0]||{}).id)return;const out=c.kind=="extra"&&c.src=="outsider";R.push({id:c.id,col:"common",k:c.kind,date:d,ym:d.slice(0,7),who:c.memberId||null,nm:c.name||"",out,cr:c.kind=="extra"?c.amount:0,dr:c.kind=="expense"?c.amount:0,txt:(c.kind=="extra"?(out?"অতিরিক্ত জমা (বাইরের)":"অতিরিক্ত জমা (সদস্য)"):"খরচ")+(c.name?" — "+c.name:"")+(c.title?": "+c.title:""),note:""})}});
   S.members.forEach(m=>{const L=ledger(m);L.rows.forEach(r=>{if(r.due>0)R.push({k:"due",date:r.ym+"-01",ym:r.ym,who:m.id,cr:0,dr:r.due,txt:"দেয় চাঁদা — "+lab(r.ym),note:""})});
-    let pool=sum(S.tx.filter(t=>t.kind=="pay"&&t.memberId==m.id),"amount");
-    L.rows.forEach(r=>{if(r.ym>nowYM)return;const c=Math.min(pool,r.due);pool-=c;if(r.due-c>0)R.push({k:"baki",date:r.ym+"-01",ym:r.ym,who:m.id,cr:0,dr:r.due-c,txt:"বকেয়া — "+lab(r.ym),note:""})})});
+    const bk=arrears(m);
+    L.rows.forEach(r=>{if(bk[r.ym])R.push({k:"baki",date:r.ym+"-01",ym:r.ym,who:m.id,cr:0,dr:bk[r.ym],txt:"বকেয়া — "+lab(r.ym),note:""})})});
   return R}
 const flt=(R,F)=>R.filter(r=>(!F.m||!S.admin||r.who==F.m||r.k=="gwaiver")&&(!F.y||(r.ym||"").slice(0,4)==F.y)&&(!F.mo||(r.ym||"").slice(5)==F.mo)&&(F.t=="baki"?r.k=="baki":(r.k!="baki"&&(!F.t||r.k==F.t||(F.t=="extram"&&r.k=="extra"&&!r.out)||(F.t=="extrao"&&r.k=="extra"&&r.out))))&&(!F.q||(r.txt+" "+r.note).includes(F.q))).sort((a,b)=>a.date<b.date?1:-1);
 function filterUI(admin){const ys=new Set([nowYM.slice(0,4)]);rows().forEach(r=>r.ym&&ys.add(r.ym.slice(0,4)));
