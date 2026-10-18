@@ -1,192 +1,244 @@
 <!DOCTYPE html><html lang="bn"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0f7a4c">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0b6e4f">
 <link rel="manifest" href="manifest.json"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
 <title>গ্রুপ তহবিল</title>
 <style>
 @font-face{font-family:"Hind Siliguri";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/hind-bengali-400.woff2) format("woff2");unicode-range:U+0951-0952,U+0964-0965,U+0980-09FE,U+1CD0,U+1CD5-1CD6,U+1CD8,U+1CE1,U+1CEA,U+1CED,U+1CF2,U+1CF5-1CF7,U+200C-200D,U+20B9,U+25CC,U+A8F1}@font-face{font-family:"Hind Siliguri";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/hind-latin-400.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Hind Siliguri";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/hind-bengali-500.woff2) format("woff2");unicode-range:U+0951-0952,U+0964-0965,U+0980-09FE,U+1CD0,U+1CD5-1CD6,U+1CD8,U+1CE1,U+1CEA,U+1CED,U+1CF2,U+1CF5-1CF7,U+200C-200D,U+20B9,U+25CC,U+A8F1}@font-face{font-family:"Hind Siliguri";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/hind-latin-500.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Hind Siliguri";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/hind-bengali-600.woff2) format("woff2");unicode-range:U+0951-0952,U+0964-0965,U+0980-09FE,U+1CD0,U+1CD5-1CD6,U+1CD8,U+1CE1,U+1CEA,U+1CED,U+1CF2,U+1CF5-1CF7,U+200C-200D,U+20B9,U+25CC,U+A8F1}@font-face{font-family:"Hind Siliguri";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/hind-latin-600.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Hind Siliguri";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/hind-bengali-700.woff2) format("woff2");unicode-range:U+0951-0952,U+0964-0965,U+0980-09FE,U+1CD0,U+1CD5-1CD6,U+1CD8,U+1CE1,U+1CEA,U+1CED,U+1CF2,U+1CF5-1CF7,U+200C-200D,U+20B9,U+25CC,U+A8F1}@font-face{font-family:"Hind Siliguri";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/hind-latin-700.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-:root{--p:#0f7a4c;--p2:#0a5f3b;--pl:#e7f5ed;--bg:#f2f5f3;--c:#fff;--t:#15231b;--m:#6b7a72;--g:#16a34a;--r:#e5484d;--bl:#2f6fed;--am:#c27c02;--pu:#6d4aff;--b:#e8ede9;--bd:#d6ded9;--gs:#e7f6ec;--rs:#fdeced;--bs:#eaf0ff;--as:#fff4dc;--ps:#f0ecff;--sh:0 1px 2px rgba(16,40,28,.04),0 6px 18px rgba(16,40,28,.06)}
-@media(prefers-color-scheme:dark){:root{--bg:#0c1310;--c:#151f1a;--t:#e5ece8;--m:#93a39a;--b:#223029;--bd:#30423a;--pl:#173527;--gs:#16301f;--rs:#3a1b1d;--bs:#1a2544;--as:#3a2b0e;--ps:#2a2347;--g:#4ade80;--r:#f87171;--bl:#7aa2ff;--am:#fbbf24;--pu:#a996ff;--sh:none}}
+/* ===== রঙ: একটি মূল সবুজ + চারটি অর্থবোধক রঙ (জমা, খরচ, বকেয়া, তথ্য) ===== */
+:root{
+--p:#0b6e4f;--p2:#08573e;--pl:#e4f2ec;--pg:linear-gradient(140deg,#13905f 0%,#0b6e4f 48%,#064733 100%);
+--bg:#f3f5f4;--c:#fff;--t:#0f1b15;--t2:#3a4741;--m:#75837c;--b:#ebefed;--bd:#dce3df;--zb:#f8faf9;
+--g:#0f9a4f;--gs:#e3f5ea;--r:#d93a40;--rs:#fdeceb;--am:#b26a00;--as:#fff2d8;--bl:#2c62d6;--bs:#e8eefc;--pu:#6247d6;--ps:#eeeafc;
+--sh:0 1px 2px rgba(15,40,28,.04),0 4px 14px rgba(15,40,28,.05);--sh2:0 14px 30px -14px rgba(6,71,51,.55);
+--f11:11px;--f12:12px;--f13:13px;--f14:14px;--f15:15px;--f17:17px;--f20:20px}
+@media(prefers-color-scheme:dark){:root{--bg:#0b110e;--c:#141c18;--t:#e8eeea;--t2:#c3cdc8;--m:#8d9b94;--b:#1f2a25;--bd:#2c3933;--zb:#18211d;--pl:#16352a;--gs:#14301f;--rs:#381b1c;--as:#36290f;--bs:#1a2440;--ps:#262043;--g:#4cd38a;--r:#ff7b7f;--am:#f2b54a;--bl:#86a8ff;--pu:#ad9bff;--sh:none;--sh2:none}}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0}
-body{font:15px/1.5 "Hind Siliguri","Noto Sans Bengali",system-ui,sans-serif;background:var(--bg);color:var(--t);padding-bottom:calc(84px + env(safe-area-inset-bottom));overscroll-behavior-y:contain}
+body{font:var(--f14)/1.5 "Hind Siliguri","Noto Sans Bengali",system-ui,sans-serif;background:var(--bg);color:var(--t);padding-bottom:calc(86px + env(safe-area-inset-bottom));overscroll-behavior-y:contain;font-variant-numeric:tabular-nums}
 body.nonav{padding-bottom:0}
 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:inherit}
-button:disabled{opacity:.6}
+button:disabled{opacity:.55}
 a{color:var(--p)}
 .i{flex:none;display:block}
-input,select,textarea{font:inherit;color:var(--t);background:var(--c);border:1.5px solid var(--bd);border-radius:12px;padding:11px 13px;width:100%;outline:none;transition:border-color .15s,box-shadow .15s}
-input:focus,select:focus,textarea:focus{border-color:var(--p);box-shadow:0 0 0 3px var(--pl)}
-textarea{resize:vertical;min-height:140px;line-height:1.65}
-select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7a72' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:34px}
-/* app bar */
-.ab{position:sticky;top:0;z-index:20;background:var(--p);color:#fff;display:flex;align-items:center;gap:4px;padding:calc(8px + env(safe-area-inset-top)) 8px 8px 12px;min-height:60px}
-.ab h1{font-size:18px;font-weight:600;margin:0;flex:1;display:flex;align-items:center;gap:10px;white-space:nowrap;overflow:hidden;min-width:0}
-.ab .lg{width:36px;height:36px;border-radius:11px;background:#fff;padding:3px;object-fit:contain;flex:none}
-.ab .ib{color:#fff;background:none;width:42px;height:42px;border-radius:12px;position:relative}
-.ab .ib:active{background:#ffffff26}
-.badge{position:absolute;top:5px;right:5px;min-width:18px;height:18px;border-radius:9px;background:#ff5a4f;color:#fff;font-size:10.5px;font-weight:700;display:grid;place-items:center;padding:0 4px;border:2px solid var(--p);line-height:1}
-.adm{font-size:11px;background:#ffffff2e;padding:1px 9px;border-radius:20px;font-weight:500}
-.wave{background:var(--p);height:70px;border-radius:0 0 28px 28px;margin-bottom:-62px}
-main{max-width:720px;margin:auto;padding:12px 14px 24px;position:relative}
-/* cards & text */
+input,select,textarea{font:inherit;font-size:var(--f15);color:var(--t);background:var(--c);border:1.5px solid var(--bd);border-radius:12px;padding:0 14px;height:48px;width:100%;outline:none;transition:border-color .15s,box-shadow .15s}
+textarea{height:auto;padding:12px 14px;resize:vertical;min-height:150px;line-height:1.7}
+input:focus,select:focus,textarea:focus{border-color:var(--p);box-shadow:0 0 0 4px var(--pl)}
+input::placeholder,textarea::placeholder{color:#a3aea9}
+select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2375837c' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px}
+
+/* ===== অ্যাপ বার ===== */
+.ab{position:sticky;top:0;z-index:20;background:var(--p);color:#fff;display:flex;align-items:center;gap:6px;padding:calc(8px + env(safe-area-inset-top)) 10px 8px;min-height:60px}
+.ab h1{font-size:var(--f17);font-weight:600;margin:0;flex:1;display:flex;align-items:center;gap:10px;white-space:nowrap;overflow:hidden;min-width:0}
+.ab .ib{color:#fff;background:#ffffff1f;width:40px;height:40px;border-radius:12px;position:relative}
+.ab .ib:active{background:#ffffff38}
+.ab.home{background:var(--bg);color:var(--t);padding-left:16px;padding-right:12px}
+.ab.home .ib{background:var(--c);color:var(--t2);box-shadow:var(--sh);border:1px solid var(--b)}
+.ab .lg{width:36px;height:36px;border-radius:11px;background:#fff;padding:3px;object-fit:contain;flex:none;box-shadow:var(--sh);border:1px solid var(--b)}
+.badge{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;border-radius:9px;background:var(--r);color:#fff;font-size:10px;font-weight:700;display:grid;place-items:center;padding:0 4px;border:2px solid var(--bg);line-height:1}
+.adm{font-size:var(--f11);background:var(--pl);color:var(--p);padding:1px 9px;border-radius:20px;font-weight:600}
+main{max-width:720px;margin:auto;padding:10px 16px 28px;position:relative}
+
+/* ===== হিরো (ব্যালেন্স) কার্ড ===== */
+.hc{position:relative;overflow:hidden;background:var(--pg);color:#fff;border-radius:24px;padding:18px 18px 16px;margin-bottom:18px;box-shadow:var(--sh2)}
+.hc::before,.hc::after{content:"";position:absolute;border-radius:50%;background:#ffffff12;pointer-events:none}
+.hc::before{width:220px;height:220px;right:-70px;top:-90px}.hc::after{width:140px;height:140px;right:40px;bottom:-80px;background:#ffffff0c}
+.hc>*{position:relative}
+.hc-top{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.hico{width:46px;height:46px;border-radius:14px;background:#ffffff26;display:grid;place-items:center;flex:none}
+.hk{display:block;font-size:var(--f12);color:#ffffffc2;font-weight:500}
+.hn{display:block;font-size:var(--f17);font-weight:600;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hn.sm{font-size:var(--f13);font-weight:500;color:#ffffffd9}
+.hbig{font-size:34px;font-weight:700;letter-spacing:-.5px;line-height:1.2;margin:2px 0 4px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.hchip{font-size:var(--f11);font-weight:600;padding:3px 10px;border-radius:20px;background:#ffffff26;color:#fff;white-space:nowrap;letter-spacing:0}
+.hchip.bad{background:#ffd4d4;color:#a3242a}
+.hmini{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.hmini>div{background:#ffffff1a;border-radius:14px;padding:9px 10px;min-width:0}
+.hmini span{display:flex;align-items:center;gap:4px;font-size:var(--f11);color:#ffffffc2;white-space:nowrap}
+.hmini b{display:block;font-size:var(--f15);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hprog{margin-top:14px;background:#ffffff1a;border-radius:14px;padding:10px 12px}
+.hrow{display:flex;justify-content:space-between;gap:8px;font-size:var(--f12);color:#ffffffd0}.hrow b{color:#fff;font-size:var(--f13)}
+.hc .bar{background:#ffffff2e}.hc .bar i{background:#fff}
+.bar{height:7px;border-radius:6px;background:var(--b);overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:var(--p);border-radius:6px}
+
+/* ===== দ্রুত কাজ (Quick actions) ===== */
+.qa{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;background:var(--c);border:1px solid var(--b);border-radius:20px;padding:14px 6px 12px;box-shadow:var(--sh);margin-bottom:6px}
+.qb{display:flex;flex-direction:column;align-items:center;gap:7px;min-width:0;border-radius:14px;padding:2px}
+.qb:active .qi{transform:scale(.93)}
+.qi{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;transition:transform .12s}
+.ql{font-size:var(--f12);font-weight:600;color:var(--t2);text-align:center;line-height:1.3}
+.t-g{background:var(--gs);color:var(--g)}.t-b{background:var(--bs);color:var(--bl)}.t-a{background:var(--as);color:var(--am)}.t-p{background:var(--ps);color:var(--pu)}
+
+/* ===== কার্ড ও লেখা ===== */
 .card{background:var(--c);border-radius:20px;padding:16px;margin-bottom:14px;box-shadow:var(--sh);border:1px solid var(--b)}
-.card h3{margin:0 0 10px;font-size:15.5px;font-weight:600;display:flex;align-items:center;gap:8px}
-.card h3 .i{color:var(--p)}
-h3.hc{justify-content:space-between}
-.k{color:var(--m);font-size:12.5px}
+.card h3{margin:0 0 12px;font-size:var(--f15);font-weight:600;display:flex;align-items:center;gap:8px;line-height:1.35}
+.card h3>.i{color:var(--p);width:18px;height:18px}
+h3.hc{position:static;overflow:visible;background:none;color:inherit;border-radius:0;padding:0;margin:0 0 12px;box-shadow:none;justify-content:space-between}
+h3.hc::before,h3.hc::after{display:none}
+.k{color:var(--m);font-size:var(--f12)}
 .c{text-align:center}
 .pos{color:var(--g)}.neg{color:var(--r)}.amb{color:var(--am)}
-.sh{display:flex;align-items:center;justify-content:space-between;margin:22px 4px 10px;gap:8px}
-.sh h2{font-size:16.5px;margin:0;font-weight:600;display:flex;gap:8px;align-items:center}
+.sh{display:flex;align-items:center;justify-content:space-between;margin:24px 2px 10px;gap:8px}
+.sh h2{font-size:var(--f15);margin:0;font-weight:700;display:flex;gap:8px;align-items:center}
 .sh h2 .i{color:var(--p)}
-.lnk{color:var(--p);font-weight:600;font-size:13.5px;display:inline-flex;align-items:center;gap:2px}
-.big{font-size:30px;font-weight:700;letter-spacing:-.3px;line-height:1.25}
-.hero{display:flex;align-items:center;gap:14px}
-.hero .ico{width:58px;height:58px;border-radius:50%;background:var(--pl);color:var(--p);display:grid;place-items:center;flex:none}
-.mini3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;border-top:1px dashed var(--bd);padding-top:12px}
-.mini3>div{min-width:0}.mini3 b{display:block;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.balrow{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin:16px 0 8px;padding-top:14px;border-top:1px dashed var(--bd)}
-.bar{height:9px;border-radius:6px;background:var(--b);overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--p),var(--g));border-radius:6px}
-/* tiles */
-.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:2px 0 4px}
-.tile{border-radius:20px;padding:16px 10px;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:14.5px;min-height:100px;text-align:center;transition:transform .1s}
-.tile .ti{width:42px;height:42px;border-radius:13px;background:#ffffff30;display:grid;place-items:center}
-.tile:active{transform:scale(.97)}
-.t-g{background:linear-gradient(135deg,#22b066,#0f7a4c);box-shadow:0 8px 18px -10px #0f7a4c}
-.t-b{background:linear-gradient(135deg,#4c8dff,#2563eb);box-shadow:0 8px 18px -10px #2563eb}
-.t-a{background:linear-gradient(135deg,#fcc23d,#f59e0b);box-shadow:0 8px 18px -10px #f59e0b}
-.t-p{background:linear-gradient(135deg,#9787ff,#6d4aff);box-shadow:0 8px 18px -10px #6d4aff}
-/* stats */
+.lnk{color:var(--p);font-weight:600;font-size:var(--f13);display:inline-flex;align-items:center;gap:2px}
+
+/* ===== পরিসংখ্যান টাইল ===== */
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
-.stats.s3{grid-template-columns:repeat(3,1fr)}.stats.s3 b{font-size:16px}
-.st{border-radius:16px;padding:12px 14px;background:var(--c);border:1px solid var(--b);min-width:0}
-.st .k{font-size:12px;font-weight:500}.st b{display:block;font-size:19px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.st.g{background:var(--gs);border-color:transparent}.st.g .k,.st.g b{color:var(--g)}
-.st.r{background:var(--rs);border-color:transparent}.st.r .k,.st.r b{color:var(--r)}
-.st.b{background:var(--bs);border-color:transparent}.st.b .k,.st.b b{color:var(--bl)}
-.st.a{background:var(--as);border-color:transparent}.st.a .k,.st.a b{color:var(--am)}
-.hs{display:flex;gap:10px;overflow-x:auto;margin:0 -14px 12px;padding:0 14px;scrollbar-width:none}.hs::-webkit-scrollbar{display:none}.hs .st{flex:none;min-width:136px}
-.balbox{background:var(--bs);border-radius:18px;text-align:center;padding:14px;margin-bottom:14px;display:flex;flex-direction:column;gap:2px}.balbox b{font-size:26px}
-/* lists */
-.lst{padding:4px 14px}
+.stats.s3{grid-template-columns:repeat(3,1fr)}.stats.s3 .st{padding:11px 12px}.stats.s3 b{font-size:var(--f15)}
+.st{position:relative;border-radius:16px;padding:12px 14px 12px 14px;background:var(--c);border:1px solid var(--b);min-width:0;box-shadow:var(--sh)}
+.st .k{font-size:var(--f12);font-weight:500;display:flex;align-items:center;gap:6px;line-height:1.35}
+.st .k::before{content:"";width:8px;height:8px;border-radius:3px;background:var(--bd);flex:none}
+.st b{display:block;font-size:var(--f17);font-weight:700;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.st.g .k::before{background:var(--g)}.st.g b{color:var(--g)}
+.st.r .k::before{background:var(--r)}.st.r b{color:var(--r)}
+.st.b .k::before{background:var(--bl)}.st.b b{color:var(--bl)}
+.st.a .k::before{background:var(--am)}.st.a b{color:var(--am)}
+.hs{display:flex;gap:10px;overflow-x:auto;margin:0 -16px 12px;padding:2px 16px 4px;scrollbar-width:none}.hs::-webkit-scrollbar{display:none}.hs .st{flex:none;min-width:140px}
+.balbox{background:var(--c);border:1px solid var(--b);box-shadow:var(--sh);border-radius:18px;text-align:center;padding:14px;margin-bottom:14px;display:flex;flex-direction:column;align-items:center;gap:2px}.balbox b{font-size:26px;display:flex;align-items:center;gap:8px}
+
+/* ===== তালিকা সারি ===== */
+.lst{padding:2px 14px}
 .li{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--b);width:100%;text-align:left}
 .li:last-child{border-bottom:0}
 button.li:active{opacity:.7}
-.ic{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;flex:none}
+.ic{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;flex:none}
 .mid{flex:1;min-width:0;display:block}
-.t1{font-weight:600;font-size:14.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block}
-.t2{font-size:12px;color:var(--m);overflow:hidden;text-overflow:ellipsis;display:block}
-.rt{text-align:right;flex:none;max-width:48%}.rt b{font-size:14.5px;white-space:nowrap}
-.acts{display:flex;gap:6px;justify-content:flex-end;margin-top:5px}
-.ib{width:34px;height:34px;border-radius:10px;display:inline-grid;place-items:center;background:var(--b);color:var(--m);flex:none}
-.ib.dn{color:var(--r);background:var(--rs)}
-.av{border-radius:50%;color:#fff;display:inline-grid;place-items:center;font-weight:700;flex:none;line-height:1}
-.chip{font-size:11.5px;font-weight:600;padding:2px 10px;border-radius:20px;background:var(--b);color:var(--m);white-space:nowrap;display:inline-block}
+.t1{font-weight:600;font-size:var(--f14);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block;line-height:1.4}
+.t2{font-size:var(--f12);color:var(--m);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block;line-height:1.45}
+.rt{text-align:right;flex:none;max-width:46%;display:flex;flex-direction:column;align-items:flex-end;gap:1px}.rt b{font-size:var(--f14);font-weight:700;white-space:nowrap}
+.li>.i{color:var(--bd)}
+.acts{display:flex;gap:4px;justify-content:flex-end;margin-top:4px}
+td .acts{margin:0;justify-content:flex-start}
+.ib{width:36px;height:36px;border-radius:11px;display:inline-grid;place-items:center;background:var(--b);color:var(--t2);flex:none}
+.ib.s{width:26px;height:26px;border-radius:8px;background:transparent;color:var(--m);border:1px solid var(--bd)}
+.ib.s.dn{color:var(--r);border-color:#f4c7c9}
+@media(prefers-color-scheme:dark){.ib.s.dn{border-color:#5a2a2c}}
+.ib.s:active{background:var(--b)}
+.av{border-radius:50%;display:inline-grid;place-items:center;font-weight:700;flex:none;line-height:1}
+.chip{font-size:var(--f11);font-weight:600;padding:2px 9px;border-radius:20px;background:var(--b);color:var(--m);white-space:nowrap;display:inline-block;line-height:1.6}
 .chip.cg{background:var(--gs);color:var(--g)}.chip.cr{background:var(--rs);color:var(--r)}.chip.ca{background:var(--as);color:var(--am)}.chip.cb{background:var(--bs);color:var(--bl)}
-/* segmented & chips */
-.seg{display:flex;background:var(--b);border-radius:14px;padding:4px;gap:4px;margin-bottom:14px}
-.seg button{flex:1;padding:9px 8px;border-radius:11px;font-size:13.5px;font-weight:600;color:var(--m);white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:6px}
-.seg button.on{background:var(--p);color:#fff;box-shadow:0 3px 8px -3px var(--p)}
-.chips{display:flex;gap:8px;overflow-x:auto;margin:0 -14px 12px;padding:2px 14px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}
-.chips button{padding:7px 15px;border-radius:20px;border:1.5px solid var(--bd);font-size:13px;font-weight:600;white-space:nowrap;background:var(--c);display:inline-flex;align-items:center;gap:4px}
-.chips button.on{background:var(--p);border-color:var(--p);color:#fff}
-/* notice */
-.ntc{background:var(--c);border-radius:18px;padding:14px 16px;margin-bottom:12px;border:1px solid var(--b);border-left:5px solid var(--p);box-shadow:var(--sh)}
-.ntc.urg{border-left-color:var(--r);background:linear-gradient(180deg,var(--rs),var(--c) 80px)}
-.nh{display:flex;gap:10px;align-items:center;margin-bottom:8px}
+
+/* ===== সেগমেন্ট ও চিপ ফিল্টার ===== */
+.seg{display:flex;background:var(--b);border-radius:14px;padding:4px;gap:4px;margin-bottom:16px}
+.seg button{flex:1;height:38px;border-radius:10px;font-size:var(--f13);font-weight:600;color:var(--m);white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:6px}
+.seg button.on{background:var(--c);color:var(--p);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.chips{display:flex;gap:8px;overflow-x:auto;margin:0 -16px 12px;padding:2px 16px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}
+.chips button{height:34px;padding:0 14px;border-radius:17px;border:1px solid var(--bd);font-size:var(--f13);font-weight:600;color:var(--t2);white-space:nowrap;background:var(--c);display:inline-flex;align-items:center;gap:4px}
+.chips button.on{background:var(--t);border-color:var(--t);color:var(--c)}
+
+/* ===== নোটিশ ===== */
+.ntc{position:relative;background:var(--c);border-radius:18px;padding:14px 16px 14px 18px;margin-bottom:12px;border:1px solid var(--b);box-shadow:var(--sh);overflow:hidden}
+.ntc::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--p)}
+.ntc.urg{background:linear-gradient(180deg,var(--rs),var(--c) 64px)}.ntc.urg::before{background:var(--r)}
+.nh{display:flex;gap:12px;align-items:center;margin-bottom:8px}
 .nic{width:38px;height:38px;border-radius:12px;background:var(--pl);color:var(--p);display:grid;place-items:center;flex:none}
-.urg .nic{background:var(--c);color:var(--r)}
-.nb{font-size:14.5px;line-height:1.75;overflow-wrap:anywhere}
+.urg .nic{background:var(--c);color:var(--r);box-shadow:var(--sh)}
+.nb{font-size:var(--f14);line-height:1.8;color:var(--t2);overflow-wrap:anywhere}
 .nb.clamp{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
-.new{font-size:10.5px;background:var(--r);color:#fff;border-radius:10px;padding:1px 8px;margin-left:8px;vertical-align:2px;font-weight:600}
-.empty{border:1.5px dashed var(--bd);border-radius:16px;padding:14px;display:flex;gap:10px;align-items:center;color:var(--m);font-size:13.5px;width:100%;text-align:left;margin-bottom:12px}
-/* bottom nav */
-nav{position:fixed;bottom:0;left:0;right:0;z-index:20;background:var(--c);border-top:1px solid var(--b);display:flex;align-items:flex-end;padding:6px 4px calc(6px + env(safe-area-inset-bottom));box-shadow:0 -4px 18px rgba(0,0,0,.05)}
-nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11.5px;color:var(--m);padding:2px 0;font-weight:500;min-width:0}
-nav .nbg{padding:3px 18px;border-radius:16px;transition:background .2s}
+.new{font-size:10px;background:var(--r);color:#fff;border-radius:10px;padding:1px 7px;margin-left:6px;vertical-align:2px;font-weight:600}
+.empty{border:1.5px dashed var(--bd);border-radius:16px;padding:14px;display:flex;gap:12px;align-items:center;color:var(--m);font-size:var(--f13);width:100%;text-align:left;margin-bottom:14px;background:var(--c)}
+.empty .i{color:var(--p)}
+
+/* ===== নিচের মেনু ===== */
+nav{position:fixed;bottom:0;left:0;right:0;z-index:20;background:var(--c);border-top:1px solid var(--b);display:flex;align-items:flex-end;padding:6px 6px calc(6px + env(safe-area-inset-bottom));box-shadow:0 -6px 20px rgba(0,0,0,.04)}
+nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:var(--f11);color:var(--m);padding:2px 0;font-weight:500;min-width:0}
+nav .nbg{width:56px;height:30px;border-radius:15px;display:grid;place-items:center;transition:background .2s}
 nav button.on{color:var(--p);font-weight:700}nav button.on .nbg{background:var(--pl)}
-nav .fab{flex:none;width:58px;height:58px;border-radius:50%;background:var(--p);color:#fff;margin:-30px 4px 4px;box-shadow:0 10px 20px -8px var(--p);display:grid;place-items:center;border:5px solid var(--bg)}
+nav .fab{flex:none;width:56px;height:56px;border-radius:18px;background:var(--pg);color:#fff;margin:-26px 6px 6px;box-shadow:var(--sh2);display:grid;place-items:center}
 nav .fab:active{transform:scale(.95)}
-/* forms */
-.fld{display:block;margin-bottom:14px}.fld>span{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+
+/* ===== ফর্ম ===== */
+.fld{display:block;margin-bottom:14px}.fld>span{display:block;font-size:var(--f13);font-weight:600;color:var(--t2);margin-bottom:6px}
 .row{display:flex;gap:8px}.row>*{flex:1;min-width:0}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.btn{width:100%;min-height:50px;border-radius:14px;background:var(--p);color:#fff;font-weight:600;font-size:15.5px;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;padding:8px 14px;text-align:center}
+.btn{width:100%;min-height:50px;border-radius:14px;background:var(--p);color:#fff;font-weight:600;font-size:var(--f15);display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;padding:8px 16px;text-align:center}
+.btn .i{width:18px;height:18px}
 .btn.sec{background:var(--b);color:var(--t)}.btn.dng{background:var(--rs);color:var(--r)}
-.btn.sm{min-height:38px;font-size:13.5px;border-radius:11px;width:auto;padding:4px 14px;display:inline-flex}
+.btn.sm{min-height:36px;font-size:var(--f13);border-radius:10px;width:auto;padding:4px 12px;display:inline-flex;gap:6px}
+.btn.sm .i{width:15px;height:15px}
 .btn:active{opacity:.85}
 .inp{display:flex;align-items:center;gap:10px;border:1.5px solid var(--bd);border-radius:14px;padding:0 6px 0 14px;background:var(--c);color:var(--m);margin-bottom:12px}
-.inp:focus-within{border-color:var(--p);box-shadow:0 0 0 3px var(--pl)}
-.inp input{border:0;padding:13px 0;box-shadow:none!important;background:none;flex:1;min-width:0}
-.inp .ib{background:none}
-.msg{background:var(--rs);color:var(--r);border-radius:12px;padding:10px 12px;font-size:13px;margin:0 0 12px;display:flex;gap:8px;align-items:flex-start;overflow-wrap:anywhere}
-/* menu list */
+.inp:focus-within{border-color:var(--p);box-shadow:0 0 0 4px var(--pl)}
+.inp input{border:0;height:50px;padding:0;box-shadow:none!important;background:none;flex:1;min-width:0}
+.inp .ib{background:none;color:var(--m)}
+.msg{background:var(--rs);color:var(--r);border-radius:12px;padding:10px 12px;font-size:var(--f13);margin:0 0 12px;display:flex;gap:8px;align-items:flex-start;overflow-wrap:anywhere}
+
+/* ===== মেনু / সেটিংস তালিকা ===== */
 .menu{background:var(--c);border-radius:18px;border:1px solid var(--b);overflow:hidden;margin-bottom:6px;box-shadow:var(--sh)}
-.mi{display:flex;align-items:center;gap:14px;padding:13px 16px;width:100%;text-align:left;border-bottom:1px solid var(--b);font-size:15px}
+.mi{display:flex;align-items:center;gap:14px;padding:12px 14px;width:100%;text-align:left;border-bottom:1px solid var(--b)}
 .mi:last-child{border-bottom:0}
-.mi .mic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--pl);color:var(--p);flex:none}
-.mi>.i{color:var(--m)}
+.mi .mic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--b);color:var(--t2);flex:none}
+.mi .mic .i{width:19px;height:19px}
+.mi>.i{color:#b8c2bd}
 .mi.red .t1{color:var(--r)}.mi.red .mic{background:var(--rs);color:var(--r)}
-button.mi:active{background:var(--bg)}
-.mh{font-size:12.5px;color:var(--m);font-weight:600;margin:18px 8px 8px}
-.prof{text-align:center;padding:22px 16px}.prof .av{margin:0 auto 10px}.prof h2{margin:0;font-size:20px}
-.agrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
-.agrid button{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;font-weight:600;text-align:center;padding:10px 2px;border-radius:16px;background:var(--c);border:1px solid var(--b)}
-.agrid .ic{width:40px;height:40px;background:var(--pl);color:var(--p)}
-/* tables */
-.tbl{overflow:auto;max-height:70vh;-webkit-overflow-scrolling:touch;border-radius:12px;border:1px solid var(--b)}
-table{border-collapse:separate;border-spacing:0;width:100%;font-size:13px}
-th,td{padding:9px 10px;border-bottom:1px solid var(--b);border-right:1px solid var(--b);text-align:left;white-space:nowrap}
-th{position:sticky;top:0;z-index:2;background:var(--pl);color:var(--p);font-weight:600;font-size:12.5px}
+button.mi:active{background:var(--zb)}
+.mh{font-size:var(--f12);color:var(--m);font-weight:600;margin:20px 6px 8px}
+.prof{text-align:center;padding:22px 16px}.prof .av{margin:0 auto 10px}.prof h2{margin:0;font-size:var(--f20);font-weight:700}
+.agrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px;background:var(--c);border:1px solid var(--b);border-radius:20px;padding:12px 4px;box-shadow:var(--sh)}
+.agrid button{display:flex;flex-direction:column;align-items:center;gap:7px;font-size:var(--f12);font-weight:600;color:var(--t2);text-align:center;line-height:1.3}
+.agrid .ic{width:46px;height:46px;border-radius:14px;background:var(--pl);color:var(--p)}
+
+/* ===== টেবিল ===== */
+.tbl{overflow:auto;max-height:70vh;-webkit-overflow-scrolling:touch;border-radius:14px;border:1px solid var(--b);background:var(--c)}
+table{border-collapse:separate;border-spacing:0;width:100%;font-size:var(--f13)}
+th,td{padding:9px 10px;border-bottom:1px solid var(--b);text-align:left;white-space:nowrap;vertical-align:middle}
+th{position:sticky;top:0;z-index:2;background:var(--zb);color:var(--m);font-weight:600;font-size:var(--f12);line-height:1.35;border-bottom:1px solid var(--bd)}
+tr:nth-child(odd) td{background:var(--zb)}
 tr:last-child td{border-bottom:0}
-.cam{width:36px!important;height:36px;border-radius:10px;background:var(--pl);color:var(--p);display:grid;place-items:center;font-size:16px;flex:none}
-.tg{font-size:11px;padding:1px 8px;border-radius:10px;background:var(--b);display:inline-block}
+td.pos,td.neg{font-weight:700}
+td{white-space:normal;min-width:64px}td:first-child,td.pos,td.neg{white-space:nowrap}th{white-space:normal;min-width:64px}
+.tbl td:nth-child(4){min-width:150px}
+.cam{width:32px!important;height:32px;border-radius:10px;background:var(--pl);color:var(--p);display:grid;place-items:center;font-size:14px;flex:none}
+.tg{font-size:var(--f11);font-weight:600;padding:1px 8px;border-radius:10px;background:var(--b);color:var(--t2);display:inline-block}
 .tga{background:var(--gs)!important;color:var(--g)!important}.tgr{background:var(--rs)!important;color:var(--r)!important}
-.tw{font-size:11px;padding:1px 8px;border-radius:10px;background:var(--as);color:var(--am);display:inline-block;margin:1px 0}
-.tag{font-size:11px;padding:1px 8px;border-radius:10px;background:var(--b)}
-details.card summary{display:flex;align-items:center;gap:8px;font-weight:600;list-style:none;cursor:pointer}
+.tw{font-size:var(--f11);font-weight:600;padding:1px 8px;border-radius:10px;background:var(--as);color:var(--am);display:inline-block;margin:1px 0}
+.tag{font-size:var(--f11);padding:1px 8px;border-radius:10px;background:var(--b)}
+details.card summary{display:flex;align-items:center;gap:8px;font-weight:600;font-size:var(--f14);list-style:none;cursor:pointer}
 details.card summary::-webkit-details-marker{display:none}
-details.card summary .i{color:var(--p)}
-/* charts */
-.chart svg{width:100%;height:auto;display:block;overflow:visible}
-.lgd{display:flex;gap:14px;justify-content:flex-end;font-size:12px;color:var(--m);margin:-4px 0 6px}.lgd i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}
-.dn{display:flex;align-items:center;gap:16px}.dn svg{width:128px;height:128px;flex:none}
-.dl{flex:1;min-width:0}.dl>div{display:flex;align-items:center;gap:8px;font-size:13px;padding:4px 0}.dl i{width:10px;height:10px;border-radius:50%;flex:none}.dl span{flex:1;min-width:0;line-height:1.3}.dl small{color:var(--m)}
-/* overlays */
-.ovl{position:fixed;inset:0;background:rgba(6,18,12,.5);z-index:40;display:flex;align-items:flex-end;justify-content:center;animation:fd .2s}
+details.card summary>.i{color:var(--p);width:18px;height:18px}
+
+/* ===== ডোনাট ===== */
+.dnt{display:flex;align-items:center;gap:16px}.dnt svg{width:124px;height:124px;flex:none}
+.dl{flex:1;min-width:0}.dl>div{display:flex;align-items:center;gap:10px;font-size:var(--f13);padding:5px 0;border-bottom:1px dashed var(--b)}.dl>div:last-child{border:0}
+.dl i{width:10px;height:10px;border-radius:3px;flex:none}.dl span{flex:1;min-width:0;line-height:1.35;color:var(--t2)}.dl small{color:var(--m);font-size:var(--f11)}.dl b{font-size:var(--f13)}
+
+/* ===== ওভারলে ===== */
+.ovl{position:fixed;inset:0;background:rgba(6,18,12,.48);z-index:40;display:flex;align-items:flex-end;justify-content:center;animation:fd .2s}
 .ovl>.bk{position:absolute;inset:0;width:100%}
-.sheet{position:relative;background:var(--c);width:100%;max-width:560px;border-radius:26px 26px 0 0;padding:10px 18px calc(20px + env(safe-area-inset-bottom));animation:su .25s ease-out}
-.sheet .grab{width:44px;height:5px;border-radius:3px;background:var(--bd);margin:0 auto 14px}
+.sheet{position:relative;background:var(--c);width:100%;max-width:560px;border-radius:26px 26px 0 0;padding:10px 18px calc(22px + env(safe-area-inset-bottom));animation:su .25s ease-out}
+.sheet .grab{width:40px;height:4px;border-radius:3px;background:var(--bd);margin:0 auto 16px}
 .modal{align-items:center;padding:20px}.modal .sheet{border-radius:24px;max-height:85vh;overflow:auto;padding:20px}
 @keyframes su{from{transform:translateY(60px);opacity:.3}}@keyframes fd{from{opacity:0}}
 .sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.sgrid button{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 4px;border-radius:18px;background:var(--bg);font-size:13px;font-weight:600;text-align:center}
-.sgrid .ic{width:50px;height:50px}
-/* misc */
-.off{background:#b45309;color:#fff;text-align:center;font-size:12.5px;padding:5px}
-.ban{background:var(--pu);color:#fff;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.ban select{width:auto;padding:5px 30px 5px 10px;font-size:13px;border-radius:10px;border:0}
-.ban button{background:#ffffff33;color:#fff;border-radius:10px;padding:5px 12px;font-weight:600}
-#toast{position:fixed;bottom:calc(96px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%) translateY(10px);background:#14231bee;color:#fff;padding:10px 20px;border-radius:24px;opacity:0;transition:.25s;pointer-events:none;z-index:90;font-size:14px;white-space:nowrap}
+.sgrid button{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 4px 12px;border-radius:18px;background:var(--zb);border:1px solid var(--b);font-size:var(--f12);font-weight:600;color:var(--t2);text-align:center}
+.sgrid .ic{width:48px;height:48px;border-radius:15px}
+
+/* ===== অন্যান্য ===== */
+.off{background:#9a5b06;color:#fff;text-align:center;font-size:var(--f12);padding:5px}
+.ban{background:var(--pu);color:#fff;padding:8px 12px;font-size:var(--f13);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ban select{width:auto;height:34px;padding:0 30px 0 10px;font-size:var(--f13);border-radius:10px;border:0}
+.ban button{background:#ffffff33;color:#fff;border-radius:10px;height:34px;padding:0 12px;font-weight:600}
+#toast{position:fixed;bottom:calc(100px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:var(--t);color:var(--c);padding:10px 20px;border-radius:24px;opacity:0;transition:.25s;pointer-events:none;z-index:90;font-size:var(--f13);font-weight:500;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.18)}
 .skel{height:120px;border-radius:20px;background:linear-gradient(90deg,var(--b) 25%,var(--c) 50%,var(--b) 75%);background-size:200% 100%;animation:sk 1.2s infinite;margin-bottom:14px}
 @keyframes sk{to{background-position:-200% 0}}
-.spl{position:fixed;inset:0;background:var(--p);display:grid;place-items:center;color:#fff;text-align:center}
-.spin{width:28px;height:28px;border:3px solid #ffffff55;border-top-color:#fff;border-radius:50%;margin:18px auto 0;animation:rt .8s linear infinite}@keyframes rt{to{transform:rotate(360deg)}}
-/* login */
-.lgn{min-height:100vh;display:flex;flex-direction:column;background:var(--p)}
-.lgh{color:#fff;text-align:center;padding:calc(52px + env(safe-area-inset-top)) 20px 60px}
-.lgo{width:100px;height:100px;border-radius:30px;background:#fff;margin:0 auto 16px;display:grid;place-items:center;box-shadow:0 14px 34px -12px #0007}.lgo img{width:80px;height:80px;object-fit:contain}
-.lgh h1{margin:0;font-size:30px;font-weight:700}.lgh p{margin:4px 0 0;opacity:.85}
-.lgb{flex:1;background:var(--bg);border-radius:30px 30px 0 0;padding:30px 22px calc(26px + env(safe-area-inset-bottom));width:100%}
-.lgb>div{max-width:440px;margin:auto}
-.lgb h2{margin:0 0 2px;font-size:22px}
-/* screenshot */
+.spl{position:fixed;inset:0;background:var(--pg);display:grid;place-items:center;color:#fff;text-align:center}
+.spin{width:26px;height:26px;border:3px solid #ffffff4d;border-top-color:#fff;border-radius:50%;margin:18px auto 0;animation:rt .8s linear infinite}@keyframes rt{to{transform:rotate(360deg)}}
+
+/* ===== লগইন ===== */
+.lgn{min-height:100vh;display:flex;flex-direction:column;background:var(--pg)}
+.lgh{color:#fff;text-align:center;padding:calc(56px + env(safe-area-inset-top)) 20px 64px}
+.lgo{width:96px;height:96px;border-radius:28px;background:#fff;margin:0 auto 16px;display:grid;place-items:center;box-shadow:0 16px 36px -14px #0009}.lgo img{width:76px;height:76px;object-fit:contain}
+.lgh h1{margin:0;font-size:28px;font-weight:700}.lgh p{margin:4px 0 0;color:#ffffffc7;font-size:var(--f14)}
+.lgb{flex:1;background:var(--bg);border-radius:28px 28px 0 0;padding:30px 22px calc(26px + env(safe-area-inset-bottom));width:100%}
+.lgb>div{max-width:420px;margin:auto}
+.lgb h2{margin:0 0 2px;font-size:var(--f20);font-weight:700}
+
+/* ===== ছবি/শেয়ার ===== */
 .shot{position:fixed;inset:0;z-index:60;background:#000d;display:flex;flex-direction:column}
 .shot .bar{display:flex;gap:8px;padding:10px;padding-top:calc(10px + env(safe-area-inset-top));background:var(--c);height:auto;border-radius:0;margin:0;overflow:visible}
 .shot .bar button{flex:1;height:44px;border-radius:12px;background:var(--b);font-weight:600;text-align:center}
 .shot .bar .pri{background:var(--p);color:#fff}.shot .bar .dng{background:var(--rs);color:var(--r)}
 .shot .sc{flex:1;overflow:auto;padding:8px}.shot img{background:#fff;max-width:none;border-radius:6px;display:block;margin:0 auto}
-@media(min-width:600px){.tiles{grid-template-columns:repeat(4,1fr)}.stats{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:600px){.stats{grid-template-columns:repeat(3,1fr)}}
 </style></head><body><script>(function(){var shown=0;function show(m){if(shown||window.__ok)return;shown=1;var a=document.getElementById("app");if(a)a.innerHTML='<div style="padding:20px;font:14px system-ui"><b>⚠️ অ্যাপ চালু হয়নি</b><p style="color:#b91c1c;word-break:break-all">'+m+'</p><p>ইন্টারনেট চেক করুন, তারপর অ্যাপ বন্ধ করে আবার খুলুন। না হলে এই লাল লেখাটির ছবি তুলে পাঠান।</p></div>'}
 addEventListener("error",function(e){var t=e.target;if(t&&t.tagName=="SCRIPT")show("ফাইল লোড হয়নি: "+(t.src||"module"));else if(e.message)show(e.message)},true);
 setTimeout(function(){show("৮ সেকেন্ডেও চালু হয়নি (ইন্টারনেট বা config.js সমস্যা হতে পারে)")},8000)})();</script>
@@ -410,38 +462,31 @@ const fmtDT=iso=>{if(!iso)return"";const d=new Date(iso);if(isNaN(d))return"";re
 const pv=y=>{let[a,b]=y.split("-").map(Number);b--;if(b<1){b=12;a--}return a+"-"+String(b).padStart(2,"0")};
 const lastN=(n,end=nowYM)=>{const o=[];let y=end;for(let i=0;i<n;i++){o.unshift(y);y=pv(y)}return o};
 const cmp=n=>{n=+n||0;const a=Math.abs(n);return a>=1e5?(n/1e5).toLocaleString("bn-BD",{maximumFractionDigits:1})+" লা":a>=1000?(n/1000).toLocaleString("bn-BD",{maximumFractionDigits:1})+"k":f(n)};
-const AVC=["#16a34a","#2f6fed","#f59e0b","#7c5cff","#0d9488","#e5484d","#db2777","#64748b"];
-const avatar=(name,sz=44)=>{const s=String(name||"?").trim(),h=[...s].reduce((a,c)=>a+c.charCodeAt(0),0);return`<span class="av" style="width:${sz}px;height:${sz}px;background:${AVC[h%AVC.length]};font-size:${Math.round(sz*.42)}px">${esc([...s][0]||"?")}</span>`};
+const AVC=["#16a34a","#2f6fed","#d97706","#7c5cff","#0d9488","#e5484d","#db2777","#64748b"];
+const avatar=(name,sz=44,dk)=>{const s=String(name||"?").trim(),h=[...s].reduce((a,c)=>a+c.charCodeAt(0),0),c=AVC[h%AVC.length];return`<span class="av" style="width:${sz}px;height:${sz}px;${dk?"background:#ffffff2b;color:#fff":`background:${c}1f;color:${c}`};font-size:${Math.round(sz*.4)}px">${esc([...s][0]||"?")}</span>`};
 const q=x=>String(x??"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;"),F=(l,h)=>`<div class="fld"><span>${l}</span>${h}</div>`;
 const ED={pay:"ep",adv:"ep",extra:"ec",expense:"ec",waiver:"ew",gwaiver:"eg"};
 const KM={pay:["in","var(--g)","var(--gs)"],adv:["in","#0d9488","var(--gs)"],due:["cal","var(--m)","var(--b)"],baki:["alert","var(--r)","var(--rs)"],waiver:["gift","var(--am)","var(--as)"],gwaiver:["gift","var(--am)","var(--as)"],extra:["wallet","var(--bl)","var(--bs)"],expense:["out","var(--r)","var(--rs)"]};
-const acts=(key,id,col)=>`<div class="acts"><button class="ib" data-${key}="${id}" aria-label="সংশোধন">${I("edit",16)}</button><button class="ib dn" data-del="${col}/${id}" aria-label="মুছুন">${I("trash",16)}</button></div>`;
+const acts=(key,id,col)=>`<div class="acts"><button class="ib s" data-${key}="${id}" aria-label="সংশোধন">${I("edit",14)}</button><button class="ib s dn" data-del="${col}/${id}" aria-label="মুছুন">${I("trash",14)}</button></div>`;
 const dshow=r=>["pay","adv","extra","expense"].includes(r.k)&&r.date?bnD(r.date):r.ym?lab(r.ym):"";
-const txRow=(r,admin,ed)=>{const[ic,c,bg]=KM[r.k]||KM.due,who=r.who?nameOf(r.who):(r.nm||(r.k=="gwaiver"?"সবার জন্য":"গ্রুপ"));
+const txRow=(r,admin,ed)=>{const[ic,c,bg]=KM[r.k]||KM.due,tp=String(r.txt).split(" — "),who=r.who?nameOf(r.who):(r.nm||(r.k=="gwaiver"?"সবার জন্য":"গ্রুপ"));
   const amt=r.cr?`<b class="pos">+${tk(r.cr)}</b>`:r.dr?`<b class="${r.k=="due"?"":"neg"}">−${tk(r.dr)}</b>`:r.wv?`<b class="amb">মওকুফ ${tk(r.wv)}</b>`:r.k=="gwaiver"?`<b class="amb">মওকুফ</b>`:"";
-  return`<div class="li"><span class="ic" style="color:${c};background:${bg}">${I(ic,20)}</span><div class="mid"><span class="t1">${esc(admin?who:r.txt)}${r.out?' <span class="chip">বাইরের</span>':""}${r.k=="adv"?' <span class="chip cb">অগ্রিম</span>':""}</span><span class="t2">${esc(admin?r.txt:(r.note||""))}</span>${admin&&r.note?`<span class="t2">${esc(r.note)}</span>`:""}</div><div class="rt">${amt}<span class="t2">${dshow(r)}</span>${ed&&ED[r.k]?acts(ED[r.k],r.id,r.col):""}</div></div>`};
+  return`<div class="li"><span class="ic" style="color:${c};background:${bg}">${I(ic,20)}</span><div class="mid"><span class="t1">${esc(admin?who:tp[0])}${r.out?' <span class="chip">বাইরের</span>':""}${r.k=="adv"?' <span class="chip cb">অগ্রিম</span>':""}</span><span class="t2">${esc(admin?r.txt:(tp.slice(1).join(" — ")||r.note||""))}</span>${admin&&r.note?`<span class="t2">${esc(r.note)}</span>`:""}</div><div class="rt">${amt}<span class="t2">${dshow(r)}</span>${ed&&ED[r.k]?acts(ED[r.k],r.id,r.col):""}</div></div>`};
 const recent=n=>rows().filter(r=>["pay","adv","extra","expense"].includes(r.k)).sort((a,b)=>a.date<b.date?1:-1).slice(0,n);
-const tile=(tab,ic,l,c)=>`<button class="tile ${c}" data-tab="${tab}"><span class="ti">${I(ic,24)}</span>${l}</button>`;
+const tile=(tab,ic,l,c)=>`<button class="qb" data-tab="${tab}"><span class="qi ${c}">${I(ic,22)}</span><span class="ql">${l}</span></button>`;
 const mi=(to,ic,l,sub,cls,isAct)=>`<button class="mi ${cls||""}" data-${isAct?"act":"tab"}="${to}"><span class="mic">${I(ic,20)}</span><span class="mid"><span class="t1">${l}</span>${sub?`<span class="t2">${sub}</span>`:""}</span>${cls=="red"?"":I("chev",18)}</button>`;
 const info=(ic,l,v)=>`<div class="mi"><span class="mic">${I(ic,20)}</span><span class="mid"><span class="t2">${l}</span><span class="t1">${v}</span></span></div>`;
-const vt=()=>`<div class="seg"><button class="${S.sv!="t"?"on":""}" data-sv="l">${I("list",16)} তালিকা</button><button class="${S.sv=="t"?"on":""}" data-sv="t">${I("sheet",16)} টেবিল / ছবি</button></div>`;
 const monthCash=ym=>{const dt=x=>(x.date||x.ym+"-01").slice(0,7);return{a:sum(S.tx.filter(t=>t.kind=="pay"&&dt(t)==ym),"amount")+sum(S.common.filter(c=>c.kind=="extra"&&(c.date||"").slice(0,7)==ym),"amount"),b:sum(S.common.filter(c=>c.kind=="expense"&&(c.date||"").slice(0,7)==ym),"amount")}};
 const niceStep=x=>{if(x<=0)return 1;const p=Math.pow(10,Math.floor(Math.log10(x))),n=x/p;return(n<=1?1:n<=2?2:n<=2.5?2.5:n<=5?5:10)*p};
-function barChart(D,la,lb,ca="#16a34a",cb="#e5484d"){
-  const W=340,H=180,pl=34,pb=24,pt=10,mx=Math.max(1,...D.map(d=>Math.max(d.a,d.b))),st=niceStep(mx/4),top=st*4,ch=H-pb-pt,cw=(W-pl)/D.length,bw=Math.max(4,Math.min(12,cw/3.2));let g="";
-  for(let i=0;i<=4;i++){const y=pt+ch*(1-i/4);g+=`<line x1="${pl}" x2="${W}" y1="${y}" y2="${y}" style="stroke:var(--b)"${i?' stroke-dasharray="3 3"':""}/><text x="${pl-6}" y="${y+3}" text-anchor="end" font-size="9.5" style="fill:var(--m)">${cmp(st*i)}</text>`}
-  D.forEach((d,i)=>{const x=pl+cw*i+cw/2,ha=d.a/top*ch,hb=d.b/top*ch;
-    g+=`<rect x="${x-bw-1.5}" y="${pt+ch-ha}" width="${bw}" height="${ha}" rx="3" style="fill:${ca}"><title>${d.l} — ${la}: ${tk(d.a)}</title></rect><rect x="${x+1.5}" y="${pt+ch-hb}" width="${bw}" height="${hb}" rx="3" style="fill:${cb}"><title>${d.l} — ${lb}: ${tk(d.b)}</title></rect><text x="${x}" y="${H-6}" text-anchor="middle" font-size="9.5" style="fill:var(--m)">${d.l}</text>`});
-  return`<div class="chart"><div class="lgd"><span><i style="background:${ca}"></i>${la}</span><span><i style="background:${cb}"></i>${lb}</span></div><svg viewBox="0 0 ${W} ${H}" role="img">${g}</svg></div>`}
 function donut(P,center){P=P.filter(p=>p[1]>0);const tot=P.reduce((a,p)=>a+p[1],0);if(!tot)return'<p class="k">এখনও কোনো তথ্য নেই</p>';let off=0;
   const seg=P.map(p=>{const pc=p[1]/tot*100,s=`<circle cx="21" cy="21" r="15.915" fill="none" stroke="${p[2]}" stroke-width="6" stroke-dasharray="${pc} ${100-pc}" stroke-dashoffset="${25-off}"><title>${p[0]}: ${tk(p[1])}</title></circle>`;off+=pc;return s}).join("");
-  return`<div class="dn"><svg viewBox="0 0 42 42"><circle cx="21" cy="21" r="15.915" fill="none" style="stroke:var(--b)" stroke-width="6"/>${seg}<text x="21" y="19.6" text-anchor="middle" font-size="3.3" style="fill:var(--m)">${center||"মোট"}</text><text x="21" y="25" text-anchor="middle" font-size="4.8" font-weight="700" style="fill:var(--t)">${cmp(tot)}</text></svg><div class="dl">${P.map(p=>`<div><i style="background:${p[2]}"></i><span>${p[0]}<br><small>${tk(p[1])}</small></span><b>${f(Math.round(p[1]/tot*100))}%</b></div>`).join("")}</div></div>`}
+  return`<div class="dnt"><svg viewBox="0 0 42 42"><circle cx="21" cy="21" r="15.915" fill="none" style="stroke:var(--b)" stroke-width="6"/>${seg}<text x="21" y="19.6" text-anchor="middle" font-size="3.3" style="fill:var(--m)">${center||"মোট"}</text><text x="21" y="25" text-anchor="middle" font-size="4.8" font-weight="700" style="fill:var(--t)">${cmp(tot)}</text></svg><div class="dl">${P.map(p=>`<div><i style="background:${p[2]}"></i><span>${p[0]}<small style="display:block">${tk(p[1])}</small></span><b>${f(Math.round(p[1]/tot*100))}%</b></div>`).join("")}</div></div>`}
 
 // ---------- সারাংশ কার্ড ----------
 const grp=o=>{const T=[["তহবিল ব্যালেন্স",o.balance,"b"],["মোট জমা (সর্বমোট)",o.totalIn,"g"],["মোট মাসিক চাঁদা",o.monthly,""],["সদস্যদের অতিরিক্ত জমা",o.extraM,""],["বাইরের মানুষের অতিরিক্ত জমা",o.extraO,""],["মোট অতিরিক্ত তহবিল",o.extra,"g"],["মোট খরচ (সর্বমোট)",o.totalOut,"r"],["এই মাসের মোট জমা",o.thisMonth,""],["মোট বকেয়া (সব সদস্য)",o.due,"r"]];
   return`<div class="stats">${T.map(([k,x,c])=>`<div class="st ${c}"><div class="k">${k}</div><b>${tk(x)}</b></div>`).join("")}<div class="st"><div class="k">সদস্য (মোট)</div><b>${f(o.members)} জন</b>${o.active==null?"":`<div style="margin-top:4px;display:flex;gap:4px;flex-wrap:wrap"><span class="chip cg">সক্রিয় ${f(o.active)}</span><span class="chip cr">নিষ্ক্রিয় ${f(o.inactive)}</span></div>`}</div></div>`};
 const srcCard=o=>{if(o.payActive==null)return"";
-  const P=[["সক্রিয় সদস্যদের মাসিক জমা",o.payActive,"#16a34a"],["নিষ্ক্রিয়/সাবেক সদস্যদের জমা",o.payInactive,"#94a3b8"],["সদস্যদের অতিরিক্ত জমা",o.extraM,"#2f6fed"],["বাইরের মানুষের অতিরিক্ত জমা",o.extraO,"#f59e0b"]];
+  const P=[["সক্রিয় সদস্যদের চাঁদা",o.payActive,"#0f9a4f"],["সাবেক সদস্যদের চাঁদা",o.payInactive,"#9aa7a1"],["সদস্যদের অতিরিক্ত",o.extraM,"#2c62d6"],["বাইরের অতিরিক্ত",o.extraO,"#e09a12"]];
   return`<div class="card"><h3>${I("pie",18)} জমার উৎস — কোথা থেকে কত অংশ</h3>${donut(P,"মোট জমা")}<p class="k" style="margin:12px 0 0">নিষ্ক্রিয় সদস্য = বর্তমান মাসিক চাঁদা ০। তাদের আগের জমা তহবিলের ব্যালেন্সে থাকে।</p></div>`};
 
 // ---------- নোটিশ বোর্ড ----------
@@ -458,9 +503,8 @@ const popUI=()=>{const n=S.common.find(x=>x.id==S.pop);if(!n)return"";
 // ---------- তালিকা ও খতিয়ান ----------
 const commonList=()=>{const all=S.common.filter(c=>c.kind=="extra"||c.kind=="expense").sort((a,b)=>(b.date||"")>(a.date||"")?1:-1),ex=all.filter(c=>c.kind=="extra"),dn=(a)=>new Set(a.map(c=>(c.src=="outsider"?"o|":"m|")+(c.name||"নাম নেই"))).size,em=ex.filter(c=>c.src!="outsider"),eo=ex.filter(c=>c.src=="outsider"),xp=all.filter(c=>c.kind=="expense");
   const head=`<div class="stats"><div class="st b"><div class="k">সদস্যদের অতিরিক্ত (${f(dn(em))} জন)</div><b>${tk(sum(em,"amount"))}</b></div><div class="st a"><div class="k">বাইরের মানুষের (${f(dn(eo))} জন)</div><b>${tk(sum(eo,"amount"))}</b></div><div class="st g"><div class="k">মোট অতিরিক্ত জমা</div><b>${tk(sum(ex,"amount"))}</b></div><div class="st r"><div class="k">মোট খরচ</div><b>${tk(sum(xp,"amount"))}</b></div></div>`;
-  const list=`<div class="card lst">${all.map(c=>{const e=c.kind=="extra";return`<div class="li"><span class="ic" style="color:${e?"var(--bl)":"var(--r)"};background:${e?"var(--bs)":"var(--rs)"}">${I(e?"wallet":"out",20)}</span><div class="mid"><span class="t1">${esc(c.title||(e?"অতিরিক্ত জমা":"খরচ"))}</span><span class="t2">${esc(c.name||"—")} • ${e?(c.src=="outsider"?"বাইরের মানুষ":"গ্রুপ সদস্য"):"খরচ"}</span></div><div class="rt"><b class="${e?"pos":"neg"}">${e?"+":"−"}${tk(c.amount)}</b><span class="t2">${bnD(c.date)}</span>${S.admin?acts("ec",c.id,"common"):""}</div></div>`}).join("")||'<p class="k">কিছু নেই</p>'}</div>`;
-  const table=`<div class="card"><h3>অতিরিক্ত জমা ও খরচ</h3><div class="tbl"><table><tr><th>তারিখ</th><th>ধরন</th><th>কে / কার কাছ থেকে</th><th>উদ্দেশ্য / কারণ</th><th>টাকা</th>${S.admin?"<th>ব্যবস্থা</th>":""}</tr>${all.map(c=>`<tr><td>${c.date||""}</td><td>${c.kind=="expense"?"খরচ":c.src=="outsider"?"অতিরিক্ত জমা (বাইরের)":"অতিরিক্ত জমা (সদস্য)"}</td><td>${esc(c.name||"—")}</td><td>${esc(c.title||"")}</td><td class="${c.kind=="expense"?"neg":"pos"}">${f(c.amount)}</td>${S.admin?`<td><button class="ib" data-ec="${c.id}">${I("edit",16)}</button> <button class="ib dn" data-del="common/${c.id}">${I("trash",16)}</button></td>`:""}</tr>`).join("")||"<tr><td>কিছু নেই</td></tr>"}</table></div></div>`;
-  return head+vt()+(S.sv=="t"?table:list)};
+  const table=`<div class="card"><h3>অতিরিক্ত জমা ও খরচ</h3><div class="tbl"><table><tr><th>তারিখ</th><th>ধরন</th><th>কে / কার কাছ থেকে</th><th>উদ্দেশ্য / কারণ</th><th>টাকা</th>${S.admin?"<th>ব্যবস্থা</th>":""}</tr>${all.map(c=>`<tr><td>${c.date||""}</td><td>${c.kind=="expense"?"খরচ":c.src=="outsider"?"অতিরিক্ত জমা (বাইরের)":"অতিরিক্ত জমা (সদস্য)"}</td><td>${esc(c.name||"—")}</td><td>${esc(c.title||"")}</td><td class="${c.kind=="expense"?"neg":"pos"}">${f(c.amount)}</td>${S.admin?`<td><div class="acts"><button class="ib s" data-ec="${c.id}">${I("edit",14)}</button><button class="ib s dn" data-del="common/${c.id}">${I("trash",14)}</button></div></td>`:""}</tr>`).join("")||"<tr><td>কিছু নেই</td></tr>"}</table></div></div>`;
+  return head+table};
 function filterUI(admin){const ys=new Set([nowYM.slice(0,4)]);rows().forEach(r=>r.ym&&ys.add(r.ym.slice(0,4)));
   const FS=(k,l,o)=>F(l,`<select data-f="${k}">${o.map(([a,b])=>`<option value="${q(a)}"${a==S.fl[k]?" selected":""}>${b}</option>`).join("")}</select>`),n=["m","mo","q"].filter(k=>S.fl[k]).length;
   return`<details class="card" id="fd"${S.fopen?" open":""}><summary>${I("filter",18)} ফিল্টার ও খোঁজ${n?` <span class="chip cg">${f(n)}টি চালু</span>`:""}<span class="k" style="margin-left:auto">${S.fl.y?(+S.fl.y).toLocaleString("bn-BD",{useGrouping:false}):"সব বছর"}${S.fl.mo?" • "+MN[+S.fl.mo-1]:""}</span></summary><div style="margin-top:14px">${admin?FS("m","সদস্য",[["","সব সদস্য"],...S.members.map(m=>[m.id,m.name])]):""}<div class="g2">${FS("y","বছর",[["","সব বছর"],...[...ys].sort().reverse().map(y=>[y,(+y).toLocaleString("bn-BD",{useGrouping:false})])])}${FS("mo","মাস",[["","সব মাস"],...MN.map((n,i)=>[String(i+1).padStart(2,"0"),n])])}</div>
@@ -468,24 +512,21 @@ function filterUI(admin){const ys=new Set([nowYM.slice(0,4)]);rows().forEach(r=>
 function stmt(admin){const R=flt(rows(),S.fl),sm=(k,x)=>sum(R.filter(r=>r.k==k),x),pays=sum(R.filter(r=>r.k=="pay"||r.k=="adv"),"cr");
   const box=[["জমা (মোট পেয়েছি)",pays,"g"],["এর মধ্যে অগ্রিম",sm("adv","cr"),"b"],["দেয় চাঁদা (মোট)",sm("due","dr"),""],["বকেয়া (জমা হয়নি)",sm("baki","dr"),"r"],["মওকুফ",sum(R,"wv"),"a"],["অতিরিক্ত — সদস্যদের",sum(R.filter(r=>r.k=="extra"&&!r.out),"cr"),"b"],["অতিরিক্ত — বাইরের",sum(R.filter(r=>r.k=="extra"&&r.out),"cr"),"b"],["মোট অতিরিক্ত তহবিল",sm("extra","cr"),"g"],["খরচ",sm("expense","dr"),"r"]].filter(x=>x[1]);
   const QT=[["","সব"],["pay","জমা"],["expense","খরচ"],["extra","অতিরিক্ত"],["baki","বকেয়া"],["due","দেয় চাঁদা"],["waiver","মওকুফ"]],hasDate=r=>["pay","adv","extra","expense"].includes(r.k)&&r.date;
-  const list=`<div class="card lst"><div class="k" style="padding:10px 0 2px">${f(R.length)} টি এন্ট্রি</div>${R.slice(0,S.lim).map(r=>txRow(r,admin,admin)).join("")||'<p class="k">এই ফিল্টারে কিছু পাওয়া যায়নি</p>'}${R.length>S.lim?`<button class="btn sec" data-act="more" style="margin-bottom:12px">আরও দেখুন (${f(R.length-S.lim)})</button>`:""}</div>`;
   const table=`<div class="card"><h3>${f(R.length)} টি এন্ট্রি</h3><div class="tbl"><table><tr><th>হিসাবের মাস</th><th>জমা/খরচের তারিখ</th>${admin?"<th>সদস্য</th>":""}<th>বিবরণ</th><th>জমা (+)<br>টাকা এসেছে</th><th>দেয় / বকেয়া / খরচ (−)</th>${admin?"<th>ব্যবস্থা</th>":""}</tr>
-  ${R.slice(0,200).map(r=>`<tr><td>${r.ym?lab(r.ym):"—"}</td><td>${hasDate(r)?r.date:"—"}</td>${admin?`<td>${esc(r.who?nameOf(r.who):(r.nm||"গ্রুপ"))}${r.out?' <span class="tg">বাইরের</span>':""}</td>`:""}<td>${esc(r.txt)}${r.k=="adv"?' <span class="tg">অগ্রিম</span>':""}${r.note?`<br><span class="k">${esc(r.note)}</span>`:""}</td><td class="pos">${r.cr?f(r.cr):r.wv?"মওকুফ "+f(r.wv):r.k=="gwaiver"?"সবার চাঁদা মওকুফ":""}</td><td class="${r.k=="due"?"":"neg"}">${r.dr?f(r.dr):""}</td>${admin?`<td>${ED[r.k]?`<button class="ib" data-${ED[r.k]}="${r.id}">${I("edit",16)}</button> <button class="ib dn" data-del="${r.col}/${r.id}">${I("trash",16)}</button>`:""}</td>`:""}</tr>`).join("")||"<tr><td>কিছু পাওয়া যায়নি</td></tr>"}</table></div>${R.length>200?'<p class="k">প্রথম ২০০টি দেখানো হচ্ছে — ফিল্টার ব্যবহার করুন</p>':""}</div>`;
+  ${R.slice(0,200).map(r=>`<tr><td>${r.ym?lab(r.ym):"—"}</td><td>${hasDate(r)?r.date:"—"}</td>${admin?`<td>${esc(r.who?nameOf(r.who):(r.nm||"গ্রুপ"))}${r.out?' <span class="tg">বাইরের</span>':""}</td>`:""}<td>${esc(r.txt)}${r.k=="adv"?' <span class="tg">অগ্রিম</span>':""}${r.note?`<br><span class="k">${esc(r.note)}</span>`:""}</td><td class="pos">${r.cr?f(r.cr):r.wv?"মওকুফ "+f(r.wv):r.k=="gwaiver"?"সবার চাঁদা মওকুফ":""}</td><td class="${r.k=="due"?"":"neg"}">${r.dr?f(r.dr):""}</td>${admin?`<td>${ED[r.k]?`<div class="acts"><button class="ib s" data-${ED[r.k]}="${r.id}">${I("edit",14)}</button><button class="ib s dn" data-del="${r.col}/${r.id}">${I("trash",14)}</button></div>`:""}</td>`:""}</tr>`).join("")||"<tr><td>কিছু পাওয়া যায়নি</td></tr>"}</table></div>${R.length>200?'<p class="k">প্রথম ২০০টি দেখানো হচ্ছে — ফিল্টার ব্যবহার করুন</p>':""}</div>`;
   return`<div class="chips">${QT.map(([k,l])=>`<button class="${S.fl.t==k?"on":""}" data-ft="${k}">${l}</button>`).join("")}</div>${filterUI(admin)}
-  ${box.length?`<div class="hs">${box.map(([k,x,c])=>`<div class="st ${c}"><div class="k">${k}</div><b>${tk(x)}</b></div>`).join("")}</div>`:""}${vt()}${S.sv=="t"?table:list}
+  ${box.length?`<div class="hs">${box.map(([k,x,c])=>`<div class="st ${c}"><div class="k">${k}</div><b>${tk(x)}</b></div>`).join("")}</div>`:""}${table}
   <details class="card"><summary>${I("info",18)} শব্দের অর্থ</summary><p class="k" style="line-height:1.8"><b>জমা (+)</b> = সদস্য যে টাকা দিয়েছেন বা গ্রুপে যে টাকা এসেছে।<br><b>দেয় চাঁদা</b> = ঐ মাসে সদস্যের যত টাকা দেওয়ার কথা (মাসিক হার − মওকুফ)। দিয়ে থাকুন বা না থাকুন, প্রতি মাসে একটি করে দেখায়।<br><b>বকেয়া</b> = দেওয়ার কথা ছিল, আগের জমা মিলিয়েও এখনও জমা হয়নি এমন মাস ও টাকা।<br><b>অগ্রিম জমা</b> = এখনও আসেনি এমন ভবিষ্যৎ মাসের চাঁদা আগেই দেওয়া। সেই মাস এসে গেলে এটি নিজে থেকেই সাধারণ মাসিক জমা হয়ে যায়।<br><b>মওকুফ</b> = ঐ মাসের চাঁদা মাফ।<br><b>অতিরিক্ত জমা</b> = সদস্য বা বাইরের কেউ বাড়তি যে টাকা দিয়েছেন (উদ্দেশ্যসহ)।<br><b>খরচ</b> = গ্রুপের খরচ (কে খরচ করেছেন ও কী কারণে)।</p></details>`}
 
 // ---------- সদস্যের স্ক্রিন ----------
 const pwForm=()=>`<div class="card"><h3>${I("lock",18)} পাসওয়ার্ড পরিবর্তন</h3>${F("বর্তমান পাসওয়ার্ড",`<input id="po" type="password" autocomplete="current-password">`)}${F("নতুন পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)",`<input id="pn1" type="password" autocomplete="new-password">`)}${F("নতুন পাসওয়ার্ড আবার লিখুন",`<input id="pn2" type="password" autocomplete="new-password">`)}<button class="btn" data-act="cpw">${I("check",18)} পাসওয়ার্ড বদলান</button></div>`;
-function memberHome(m){const L=ledger(m),st=stat(m),g=S.sum||{},cur=L.rows.find(r=>r.ym==nowYM)||{due:0,paid:0},rate=rateAt(m,nowYM),pct=cur.due?Math.min(100,cur.paid/cur.due*100):100,
-  M=lastN(6).map(y=>{const r=L.rows.find(x=>x.ym==y)||{paid:0,due:0};return{l:MS[+y.slice(5)-1],a:r.paid,b:r.due}}),rc=recent(5);
-  return`<div class="card"><div class="hero">${avatar(m.name,56)}<div class="mid"><span class="k">স্বাগতম 👋</span><span class="t1" style="font-size:18px">${esc(m.name)}</span><span class="chip ${rate>0?"cg":"cr"}" style="margin-top:3px">${rate>0?"সক্রিয় সদস্য":"নিষ্ক্রিয় সদস্য"}</span></div></div>
-  <div class="balrow"><div><div class="k">আমার ব্যালেন্স</div><div class="big ${st.net<0?"neg":"pos"}">${st.net<0?"−":""}${tk(Math.abs(st.net))}</div></div><span class="chip ${st.net<0?"cr":"cg"}">${st.label}</span></div>
-  <div class="k">${lab(nowYM)}: ${tk(cur.paid)} জমা / ${tk(cur.due)} দেয়</div><div class="bar"><i style="width:${pct}%"></i></div>${st.adv>0?`<div class="k" style="margin-top:6px">ভবিষ্যৎ মাসের অগ্রিম জমা: ${tk(st.adv)}</div>`:""}</div>
+function memberHome(m){const L=ledger(m),st=stat(m),g=S.sum||{},cur=L.rows.find(r=>r.ym==nowYM)||{due:0,paid:0},rate=rateAt(m,nowYM),pct=cur.due?Math.min(100,cur.paid/cur.due*100):100,rc=recent(5);
+  return`<div class="hc"><div class="hc-top">${avatar(m.name,46,1)}<div class="mid"><span class="hk">স্বাগতম</span><span class="hn">${esc(m.name)}</span></div><span class="hchip">${rate>0?"সক্রিয় সদস্য":"নিষ্ক্রিয় সদস্য"}</span></div>
+  <span class="hk">আমার ব্যালেন্স</span><div class="hbig">${st.net<0?"−":""}${tk(Math.abs(st.net))}<span class="hchip${st.net<0?" bad":""}">${st.label}</span></div>
+  <div class="hprog"><div class="hrow"><span>${lab(nowYM)}-এর চাঁদা</span><b>${tk(cur.paid)} / ${tk(cur.due)}</b></div><div class="bar"><i style="width:${pct}%"></i></div>${st.adv>0?`<div class="hrow" style="margin-top:8px"><span>ভবিষ্যৎ মাসের অগ্রিম জমা</span><b>${tk(st.adv)}</b></div>`:""}</div></div>
   ${noticeBoard()}
-  <div class="tiles">${tile("stmt","list","আমার লেনদেন","t-g")}${tile("hist","cal","মাসওয়ারি হিসাব","t-b")}${tile("grp","receipt","তহবিলের খরচ","t-a")}${tile("me","user","প্রোফাইল","t-p")}</div>
+  <div class="qa">${tile("stmt","list","লেনদেন","t-g")}${tile("hist","cal","মাসওয়ারি","t-b")}${tile("grp","receipt","তহবিলের খরচ","t-a")}${tile("me","user","প্রোফাইল","t-p")}</div>
   <div class="stats" style="margin-top:14px"><div class="st g"><div class="k">আমার মোট জমা</div><b>${tk(st.pool)}</b></div><div class="st r"><div class="k">এ পর্যন্ত দেয় চাঁদা</div><b>${tk(st.dueNow)}</b></div><div class="st b"><div class="k">মাসিক চাঁদা</div><b>${tk(rate)}</b></div><div class="st a"><div class="k">যোগদান</div><b style="font-size:16px">${lab(m.join)}</b></div></div>
-  <div class="card"><h3>${I("chart",18)} আমার মাসওয়ারি চাঁদা (শেষ ৬ মাস)</h3>${barChart(M,"জমা","দেয়","#16a34a","#cbd5e1")}</div>
   <div class="sh"><h2>সাম্প্রতিক লেনদেন</h2><button class="lnk" data-tab="stmt">সব দেখুন ${I("chev",16)}</button></div><div class="card lst">${rc.map(r=>txRow(r,false,false)).join("")||'<p class="k">এখনও কোনো জমা নেই</p>'}</div>
   <div class="sh"><h2>${I("users",19)} গ্রুপের তহবিল</h2></div>${grp(g)}${srcCard(g)}
   <p class="k c">🟢 ডেটা স্বয়ংক্রিয়ভাবে হালনাগাদ হয়${S.sum&&S.sum.updated?" • সারাংশ: "+new Date(S.sum.updated).toLocaleString("bn-BD"):""}</p>${rate<=0?'<p class="k c">আপনি এখন নিষ্ক্রিয় সদস্য, আপনার আগের জমা তহবিলে আছে।</p>':""}`}
@@ -493,7 +534,7 @@ function profile(m){const st=stat(m),rate=rateAt(m,nowYM);
   return`<div class="card prof">${avatar(m.name,80)}<h2>${esc(m.name)}</h2><div class="k">লগইন আইডি: ${esc(S.asMember?(m.loginId||"—"):S.user.email.split("@")[0])}</div><div style="margin-top:8px"><span class="chip ${rate>0?"cg":"cr"}">${rate>0?"সক্রিয়":"নিষ্ক্রিয়"}</span> <span class="chip ${st.net<0?"cr":"cb"}">${st.label} ${tk(Math.abs(st.net))}</span></div></div>
   <div class="mh">আমার তথ্য</div><div class="menu">${info("phone","মোবাইল",esc(m.phone||"দেওয়া নেই"))}${info("cal","যোগদান",lab(m.join))}${info("wallet","বর্তমান মাসিক চাঁদা",tk(rate))}</div>
   ${S.asMember?"":`<div class="mh">অ্যাকাউন্ট</div><div class="menu">${mi("pw","lock","পাসওয়ার্ড পরিবর্তন")}${S.inst?mi("install","download","অ্যাপ ইনস্টল করুন","","",1):""}${mi("out","logout","লগআউট","","red",1)}</div>`}
-  <p class="k c" style="margin-top:20px">গ্রুপ তহবিল • সংস্করণ ২.০</p>`}
+  <p class="k c" style="margin-top:20px">গ্রুপ তহবিল • সংস্করণ ২.১</p>`}
 function memberView(){
   const m=S.members[0];if(!m)return S.err?"":'<div class="skel"></div>';
   if(S.tab=="hist"){const st=stat(m);return`<div class="stats s3"><div class="st g"><div class="k">মোট জমা</div><b>${tk(st.pool)}</b></div><div class="st r"><div class="k">মোট দেয়</div><b>${tk(st.dueNow)}</b></div><div class="st ${st.net<0?"r":"b"}"><div class="k">${st.label}</div><b>${tk(Math.abs(st.net))}</b></div></div>`+ledTable(m)}
@@ -501,13 +542,13 @@ function memberView(){
   return memberHome(m)}
 
 // ---------- অ্যাডমিন স্ক্রিন ----------
-function adminHome(){const o=summary(),M=lastN(6).map(y=>({l:MS[+y.slice(5)-1],...monthCash(y)})),dues=S.members.map(m=>({m,s:stat(m)})).filter(x=>x.s.net<0).sort((a,b)=>a.s.net-b.s.net),rc=recent(5);
-  return`<div class="card"><div class="hero"><span class="ico">${I("users",28)}</span><div class="mid"><span class="k">আমাদের গ্রুপ তহবিল</span><div class="big pos">${tk(o.balance)}</div><span class="k">মোট সদস্য: ${f(o.members)} জন • সক্রিয় ${f(o.active)} জন</span></div></div>
-  <div class="mini3"><div><span class="k">এই মাসে জমা</span><b class="pos">${tk(o.thisMonth)}</b></div><div><span class="k">মোট খরচ</span><b class="neg">${tk(o.totalOut)}</b></div><div><span class="k">মোট বকেয়া</span><b class="amb">${tk(o.due)}</b></div></div></div>
+function adminHome(){const o=summary(),dues=S.members.map(m=>({m,s:stat(m)})).filter(x=>x.s.net<0).sort((a,b)=>a.s.net-b.s.net),rc=recent(5);
+  return`<div class="hc"><div class="hc-top"><span class="hico">${I("wallet",22)}</span><div class="mid"><span class="hk">আমাদের গ্রুপ তহবিল</span><span class="hn sm">মোট সদস্য ${f(o.members)} জন • সক্রিয় ${f(o.active)} জন</span></div></div>
+  <span class="hk">বর্তমান ব্যালেন্স</span><div class="hbig">${tk(o.balance)}</div>
+  <div class="hmini"><div><span>${I("in",13)} এই মাসে জমা</span><b>${tk(o.thisMonth)}</b></div><div><span>${I("out",13)} মোট খরচ</span><b>${tk(o.totalOut)}</b></div><div><span>${I("alert",13)} মোট বকেয়া</span><b>${tk(o.due)}</b></div></div></div>
   ${syncBanner()}${noticeBoard()}
-  <div class="tiles">${tile("pay","in","চাঁদা জমা নিন","t-g")}${tile("com","wallet","অতিরিক্ত / খরচ","t-b")}${tile("rep","chart","মাসিক রিপোর্ট","t-a")}${tile("mem","users","সদস্য তালিকা","t-p")}</div>
+  <div class="qa">${tile("pay","in","জমা নিন","t-g")}${tile("com","wallet","খরচ/অতিরিক্ত","t-b")}${tile("rep","pie","রিপোর্ট","t-a")}${tile("mem","users","সদস্য","t-p")}</div>
   <div class="sh"><h2>সাম্প্রতিক লেনদেন</h2><button class="lnk" data-tab="led">সব দেখুন ${I("chev",16)}</button></div><div class="card lst">${rc.map(r=>txRow(r,true,false)).join("")||'<p class="k">এখনও কোনো লেনদেন নেই। "জমা নিন" থেকে শুরু করুন।</p>'}</div>
-  <div class="card"><h3>${I("chart",18)} মাসওয়ারি আয়-ব্যয় (শেষ ৬ মাস)</h3>${barChart(M,"জমা","খরচ")}</div>
   ${srcCard(o)}
   ${dues.length?`<div class="sh"><h2>বকেয়া আছে যাদের</h2><span class="chip cr">${f(dues.length)} জন</span></div><div class="card lst">${dues.slice(0,8).map(x=>`<button class="li" data-view="${x.m.id}">${avatar(x.m.name,42)}<span class="mid"><span class="t1">${esc(x.m.name)}</span><span class="t2">${esc(x.m.phone||"মোবাইল নম্বর নেই")}</span></span><span class="rt"><b class="neg">${tk(-x.s.net)}</b><span class="t2">বকেয়া</span></span></button>`).join("")}</div>`:""}`}
 function memberDetail(m){const st=stat(m),ac=rateAt(m,nowYM)>0,ab=(k,ic,l)=>`<button data-${k}="${m.id}"><span class="ic">${I(ic,20)}</span>${l}</button>`;
@@ -543,7 +584,7 @@ function adminView(){
     const em=S.members.find(x=>x.id==S.emem),L=memList();
     const edit=em?`<div class="card" style="border:2px solid var(--p)"><h3>${I("edit",18)} ${esc(em.name)} — তথ্য সংশোধন</h3>${F("নাম",`<input id="en" value="${q(em.name)}">`)}${F("মোবাইল নম্বর",`<input id="eph" inputmode="tel" value="${q(em.phone)}">`)}
     ${F("যোগদানের মাস (এই মাস থেকে চাঁদা গণনা শুরু হবে)",MP("ej",em.join))}${F("শুরুর মাসিক চাঁদা (৳)",`<input id="er" type="number" inputmode="numeric" value="${q(em.rate0)}">`)}
-    <div class="fld"><span>হার পরিবর্তনের ইতিহাস</span>${(em.changes||[]).map((c,i)=>`<div class="li" style="padding:6px 0"><div class="mid"><span class="t1">${lab(c.from)} থেকে ${tk(c.rate)}</span></div><button class="ib dn" data-delrate="${i}">${I("trash",16)}</button></div>`).join("")||'<p class="k" style="margin:0">নেই</p>'}<button class="btn sec sm" data-rate="${em.id}" style="margin-top:6px">${I("plus",16)} নতুন হার যোগ</button></div>
+    <div class="fld"><span>হার পরিবর্তনের ইতিহাস</span>${(em.changes||[]).map((c,i)=>`<div class="li" style="padding:6px 0"><div class="mid"><span class="t1">${lab(c.from)} থেকে ${tk(c.rate)}</span></div><button class="ib s dn" data-delrate="${i}">${I("trash",14)}</button></div>`).join("")||'<p class="k" style="margin:0">নেই</p>'}<button class="btn sec sm" data-rate="${em.id}" style="margin-top:6px">${I("plus",16)} নতুন হার যোগ</button></div>
     <p class="k">লগইন আইডি: ${esc(em.loginId||"নেই")} (বদলাতে সদস্যের পাতায় "পাসওয়ার্ড রিসেট" চাপুন)</p>
     <button class="btn" data-act="savemem">${I("check",18)} সংরক্ষণ</button><button class="btn sec" data-act="cancel">বাতিল</button><button class="btn dng" data-act="delmem">${I("trash",18)} এই সদস্য ও তার সব জমা মুছুন</button></div>`:"";
     const add=S.addMem?`<div class="card"><h3>${I("userplus",18)} নতুন সদস্য ও লগইন</h3>${F("নাম",`<input id="nn" placeholder="সদস্যের পুরো নাম">`)}${F("মোবাইল নম্বর (ঐচ্ছিক)",`<input id="np" inputmode="tel" placeholder="01XXXXXXXXX">`)}${F("যোগদানের মাস (এই মাস থেকে চাঁদা গণনা)",MP("nj"))}
@@ -564,11 +605,10 @@ function adminView(){
   if(t=="rep"){const ys=new Set([nowYM.slice(0,4)]);S.tx.forEach(x=>(x.date||x.ym)&&ys.add((x.date||x.ym).slice(0,4)));S.common.forEach(c=>c.date&&ys.add(c.date.slice(0,4)));const Y=S.ry||nowYM.slice(0,4);
     const M=MN.map((n,i)=>({l:MS[i],...monthCash(Y+"-"+String(i+1).padStart(2,"0"))})),tin=sum(M,"a"),tout=sum(M,"b");
     const yp=S.tx.filter(x=>x.kind=="pay"&&(x.date||x.ym).slice(0,4)==Y),ye=S.common.filter(c=>c.kind=="extra"&&(c.date||"").slice(0,4)==Y),yx=S.common.filter(c=>c.kind=="expense"&&(c.date||"").slice(0,4)==Y);
-    const cats=[["মাসিক চাঁদা",sum(yp,"amount"),"#16a34a"],["সদস্যদের অতিরিক্ত জমা",sum(ye.filter(c=>c.src!="outsider"),"amount"),"#2f6fed"],["বাইরের মানুষের জমা",sum(ye.filter(c=>c.src=="outsider"),"amount"),"#f59e0b"]];
-    const gx={};yx.forEach(c=>{const k=(c.title||"অন্যান্য").trim()||"অন্যান্য";gx[k]=(gx[k]||0)+(+c.amount||0)});const xs=Object.entries(gx).sort((a,b)=>b[1]-a[1]),XC=["#e5484d","#f59e0b","#7c5cff","#0d9488","#94a3b8"],xp=xs.slice(0,4).map((x,i)=>[esc(x[0]),x[1],XC[i]]);if(xs.length>4)xp.push(["অন্যান্য",xs.slice(4).reduce((a,x)=>a+x[1],0),XC[4]]);
+    const cats=[["মাসিক চাঁদা",sum(yp,"amount"),"#0f9a4f"],["সদস্যদের অতিরিক্ত",sum(ye.filter(c=>c.src!="outsider"),"amount"),"#2c62d6"],["বাইরের অতিরিক্ত",sum(ye.filter(c=>c.src=="outsider"),"amount"),"#e09a12"]];
+    const gx={};yx.forEach(c=>{const k=(c.title||"অন্যান্য").trim()||"অন্যান্য";gx[k]=(gx[k]||0)+(+c.amount||0)});const xs=Object.entries(gx).sort((a,b)=>b[1]-a[1]),XC=["#d93a40","#e09a12","#6247d6","#0d9488","#9aa7a1"],xp=xs.slice(0,4).map((x,i)=>[esc(x[0]),x[1],XC[i]]);if(xs.length>4)xp.push(["অন্যান্য",xs.slice(4).reduce((a,x)=>a+x[1],0),XC[4]]);
     return`<div class="row" style="align-items:center;margin-bottom:14px"><h2 style="margin:0;font-size:18px">${(+Y).toLocaleString("bn-BD",{useGrouping:false})} সালের সারাংশ</h2><select data-ry="1" style="flex:none;width:120px">${[...ys].sort().reverse().map(y=>`<option value="${y}"${y==Y?" selected":""}>${(+y).toLocaleString("bn-BD",{useGrouping:false})}</option>`).join("")}</select></div>
     <div class="stats s3"><div class="st g"><div class="k">মোট জমা</div><b>${tk(tin)}</b></div><div class="st r"><div class="k">মোট খরচ</div><b>${tk(tout)}</b></div><div class="st b"><div class="k">ব্যালেন্স</div><b>${tk(tin-tout)}</b></div></div>
-    <div class="card"><h3>${I("chart",18)} মাসওয়ারি সারাংশ</h3>${barChart(M,"জমা","খরচ")}</div>
     <div class="card"><h3>${I("pie",18)} জমার ধরন</h3>${donut(cats,"মোট জমা")}</div>
     <div class="card"><h3>${I("pie",18)} খরচের খাত</h3>${donut(xp,"মোট খরচ")}</div>
     <div class="sh"><h2>সর্বমোট হিসাব (শুরু থেকে)</h2></div>${grp(summary())}${donorCard()}`}
@@ -581,7 +621,7 @@ function adminView(){
     <div class="mh">গ্রুপ</div><div class="menu">${mi("ntc","mega","নোটিশ বোর্ড",N.length?f(N.length)+"টি নোটিশ প্রকাশিত":"কোনো নোটিশ নেই")}${mi("rep","chart","সারাংশ রিপোর্ট","বছরভিত্তিক আয়-ব্যয়, খাত ও দাতা")}${S.members.length?mi("asuser","eye","সদস্য হিসেবে দেখুন","সদস্যরা অ্যাপে কী দেখেন","",1):""}</div>
     <div class="mh">ডেটা</div><div class="menu">${mi("tool","sheet","Google Sheet, ইমপোর্ট ও ব্যাকআপ",SHEET?"Sheet সিঙ্ক চালু":"")}</div>
     <div class="mh">অ্যাকাউন্ট</div><div class="menu">${mi("pw","lock","পাসওয়ার্ড পরিবর্তন")}${S.inst?mi("install","download","অ্যাপ ইনস্টল করুন","","",1):""}${mi("out","logout","লগআউট","","red",1)}</div>
-    <p class="k c" style="margin-top:20px">গ্রুপ তহবিল • সংস্করণ ২.০</p>`}
+    <p class="k c" style="margin-top:20px">গ্রুপ তহবিল • সংস্করণ ২.১</p>`}
   return adminHome()}
 
 // ---------- কাঠামো: হেডার, নিচের মেনু, শিট ----------
@@ -589,7 +629,7 @@ const TT={led:"লেনদেন",stmt:"আমার লেনদেন",hist:"
 const hb=(act,ic,l)=>`<button class="ib" data-act="${act}" aria-label="${l}" title="${l}">${I(ic)}</button>`;
 function hdr(asU){
   if(S.tab=="home"){const un=!S.admin?notices().filter(isNewN).length:0;
-    return`<header class="ab"><h1><img src="icon-192.png" class="lg" alt="">গ্রুপ তহবিল${S.admin&&!asU?'<span class="adm">অ্যাডমিন</span>':""}</h1>${S.inst?hb("install","download","ইনস্টল"):""}${S.admin&&!asU&&S.members.length?hb("asuser","eye","সদস্য ভিউ"):""}${!S.admin||asU?`<button class="ib" data-act="bell" aria-label="নোটিশ">${I("bell")}${un?`<span class="badge">${f(un)}</span>`:""}</button>`:""}</header>`}
+    return`<header class="ab home"><h1><img src="icon-192.png" class="lg" alt="">গ্রুপ তহবিল${S.admin&&!asU?'<span class="adm">অ্যাডমিন</span>':""}</h1>${S.inst?hb("install","download","ইনস্টল"):""}${S.admin&&!asU&&S.members.length?hb("asuser","eye","সদস্য ভিউ"):""}${!S.admin||asU?`<button class="ib" data-act="bell" aria-label="নোটিশ">${I("bell")}${un?`<span class="badge">${f(un)}</span>`:""}</button>`:""}</header>`}
   const title=S.tab=="mem"&&S.viewM?"সদস্য হিসাব":TT[S.tab]||"";
   return`<header class="ab">${hb("back","back","পেছনে")}<h1>${title}</h1>${S.tab=="led"||S.tab=="stmt"?hb("filt","filter","ফিল্টার"):""}${S.tab=="mem"&&!S.viewM?hb("addmem","userplus","নতুন সদস্য"):""}</header>`}
 function navUI(asU){
@@ -617,7 +657,7 @@ function render(){
     const asU=S.admin&&S.asMember&&S.members.length;
     const body=!S.ready?'<div class="skel"></div><div class="skel" style="height:90px"></div><div class="skel" style="height:220px"></div>':asU?withUser(memberView):S.admin?(S.tab=="home"?"":syncBanner())+adminView():memberView();
     const ban=asU?`<div class="ban">${I("eye",16)} সদস্য হিসেবে দেখছেন: <select data-asm="1">${S.members.map(m=>`<option value="${m.id}"${m.id==S.asMember?" selected":""}>${esc(m.name)}</option>`).join("")}</select><button data-act="backadmin">↩ অ্যাডমিন প্যানেল</button></div>`:"";
-    A.innerHTML=hdr(asU)+ban+(navigator.onLine?"":'<div class="off">📴 অফলাইন — সর্বশেষ সংরক্ষিত ডেটা দেখানো হচ্ছে</div>')+(S.tab=="home"&&S.ready?'<div class="wave"></div>':"")+`<main>${S.err?`<div class="msg">${I("alert",16)}<span>${esc(S.err)}</span></div>`:""}${body}</main>`+navUI(asU)+(S.sheet?sheetUI():"")+(S.pop?popUI():"");
+    A.innerHTML=hdr(asU)+ban+(navigator.onLine?"":'<div class="off">📴 অফলাইন — সর্বশেষ সংরক্ষিত ডেটা দেখানো হচ্ছে</div>')+`<main>${S.err?`<div class="msg">${I("alert",16)}<span>${esc(S.err)}</span></div>`:""}${body}</main>`+navUI(asU)+(S.sheet?sheetUI():"")+(S.pop?popUI():"");
     if(S.tab=="home"&&S.ready)markSeen()}
   for(const id in keep){const e=document.getElementById(id);if(e&&e.type!="hidden"&&e.value!==keep[id])e.value=keep[id]}
   if(foc){const e=document.getElementById(foc.id);if(e){e.focus({preventScroll:true});try{e.setSelectionRange(foc.s,foc.e)}catch(x){}}}
@@ -645,7 +685,7 @@ async function shotTable(tbl,title,sub){
   g.fillStyle="#475569";g.font="13px "+FN;g.fillText(sub||"",P+(lg.naturalWidth?64:0),52);
   let y=top;
   data.forEach((r,ri)=>{const h=rh(r);let x=P;
-    if(r[0]&&r[0].th){g.fillStyle="#0f7a4c";g.fillRect(P,y,W-P*2,h)}else if(ri%2==0){g.fillStyle="#f3f7f6";g.fillRect(P,y,W-P*2,h)}
+    if(r[0]&&r[0].th){g.fillStyle="#0b6e4f";g.fillRect(P,y,W-P*2,h)}else if(ri%2==0){g.fillStyle="#f3f7f6";g.fillRect(P,y,W-P*2,h)}
     r.forEach((c,i)=>{g.font=F(c.th);g.fillStyle=c.th?"#fff":c.neg?"#b91c1c":c.pos?"#15803d":"#0f172a";c.W.forEach((l,li)=>g.fillText(l,x+9,y+6+LH/2+li*LH));
       g.strokeStyle="#b8c4c0";g.lineWidth=1;g.strokeRect(x+.5,y+.5,cw[i],h);x+=cw[i]});y+=h});
   g.fillStyle="#64748b";g.font="12px "+FN;g.textBaseline="alphabetic";g.fillText("গ্রুপ তহবিল • তৈরি: "+new Date().toLocaleString("bn-BD"),P,H-10);
