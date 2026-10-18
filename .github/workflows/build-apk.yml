@@ -32,6 +32,7 @@ jobs:
           node bundle.cjs
           npx esbuild src/app.js --bundle --minify --format=iife --target=chrome80 --outfile=www/app.js
           cp manifest.json icon-192.png icon-512.png www/
+          cp -r fonts www/
           if grep -q "www.gstatic.com" www/app.js; then echo "Firebase was not bundled"; exit 1; fi
           ls -la www
       - name: Create Android project
